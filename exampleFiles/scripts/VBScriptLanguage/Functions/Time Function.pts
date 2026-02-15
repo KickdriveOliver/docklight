@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+857
+
+'Example Time Function
+
+DL.ClearCommWindows
+
+DL.AddComment Time   ' Return current system time.

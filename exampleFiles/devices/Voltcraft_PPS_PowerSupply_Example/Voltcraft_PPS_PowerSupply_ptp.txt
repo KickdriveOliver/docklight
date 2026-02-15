@@ -1,0 +1,102 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+COM2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+PC
+PPS
+
+SEND
+0
+Get PS max values
+47 4D 41 58 0D
+0
+5
+
+SEND
+1
+Switch output
+53 4F 55 54 ?? 0D
+0
+5
+
+SEND
+2
+Preset Voltage value
+56 4F 4C 54 ?? ?? ?? 0D
+0
+5
+
+SEND
+3
+Preset Current value
+43 55 52 52 ?? ?? ?? 0D
+0
+5
+
+SEND
+4
+Get PS preset values
+47 45 54 53 0D
+0
+5
+
+SEND
+5
+Get PS display values
+47 45 54 44 0D
+0
+5
+
+RECEIVE
+0
+Max or Preset Values
+&& 0A ?? ?? ?? ?? ?? ?? 0D 4F 4B 0D
+-1
+1
+COMMENT Max/Preset Values: %_A(3,2).%_A(5,1)V, %_A(6,1).%_A(7,2)A
+0
+1
+0
+0
+
+RECEIVE
+1
+OK
+&& 0A 4F 4B 0D
+-1
+1
+COMMENT Confirmation received.
+0
+1
+0
+0
+
+RECEIVE
+2
+Display values
+&& 0A ?? ?? ?? ?? ?? ?? ?? ?? ?? 0D 4F 4B 0D
+-1
+1
+COMMENT Values: %_A(3,2).%_A(5,2)V, %_A(7,1).%_A(8,3)A%_L Status: %_A(11,1) (0=CV,1=CC) 
+0
+1
+0
+0
+

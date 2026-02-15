@@ -1,0 +1,15 @@
+DL_SCRIPTVERSION
+1
+12708
+
+'Example Trim
+
+DL.ClearCommWindows
+
+
+DL.AddComment LTrim("   Flachmann und Heggelbacher ")  
+DL.AddComment vbCrLf 
+DL.AddComment RTrim("   Flachmann und Heggelbacher ")   
+DL.AddComment vbCrLf 
+DL.AddComment Trim("   Flachmann und Heggelbacher ")
+DL.AddComment vbCrLf 

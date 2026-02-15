@@ -1,0 +1,34 @@
+DL_SCRIPTVERSION
+1
+36024
+
+' One_LogFile_Per_Hour.pts
+' Date: 2008-04-11
+' Applies to: Docklight Scripting V1.8 
+' Author: Heggelbacher
+' Docklight demo script for using log file names with a date/time stamp
+' and changing the log file in regular intervals (one hour) 
+
+' This is the base path and location where the log file(s) will be stored
+Const BASE_FILE_PATH = "logfile_"
+' Create ASCII and HEX log files
+const LOG_REPRESENTATIONS = "AH" 
+
+currentLogFileName = ""
+DL.StartCommunication
+Do 
+    newLogFileName = getFileName()
+    ' Time for starting a new file?
+    If newLogFileName <> currentLogFileName Then
+        DL.StartLogging newLogFileName, True, LOG_REPRESENTATIONS
+	  currentLogFileName  = newLogFileName
+    End If
+    DL.Pause 1 ' reduce CPU load
+Loop
+
+Function getFileName()
+    dt = Now
+    ' Compose a file name. 
+    ' The Right() functions ensure that all months, days, hours are printed with two decimals
+    getFileName = BASE_FILE_PATH & Year(dt) & "_" & Right("0" & Month(dt), 2) & "_" & Right("0" & Day(dt), 2) & "_" & Right("0" & Hour(dt), 2) & "H"
+End Function

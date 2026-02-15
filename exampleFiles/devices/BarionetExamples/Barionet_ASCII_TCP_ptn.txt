@@ -1,0 +1,120 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset0 Arial;}{\f3\fswiss\fcharset0 GillSans;}}
+{\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\b\f2\fs24 Docklight Project for the Barionet 
+\par ASCII Control Protocol on the TCP Command Port\b0\fs20 
+\par Commands are based on the Barix User Manual 
+\par (Rev. 1.46_20041004 - see \cf2\f3\fs18 http://www.barix.com\cf1\f2\fs20 )
+\par \cf0 
+\par \b Example settings for the Barionet\b0 :
+\par Settings/Network: \tab Static IP adress according to the Docklight Project 
+\par \tab\tab\tab (193.67.22.110 / 255.255.255.0 in our example)
+\par Settings/Control: \tab Defined TCP command port 
+\par \tab\tab\tab (9000 in our example)
+\par 
+\par \b Note: \tab\b0 If you require different network settings, you have to change the Docklight
+\par \tab project settings. (Menu Tools / Project Settings.. / Tab Communication)
+\par \b 
+\par Docklight Send Sequences:
+\par \b0 On the left side you can find some commands according to the specified Barionet
+\par ASCII Protocol. If you want to edit a certain command just double-click on the entry
+\par in the Send Sequence list.
+\par 
+\par \b Docklight Receive Sequences:
+\par \b0 Docklight can detect certain incoming serial data with the help of definded receive
+\par sequences. As an example some Barionet answers will be detected and Docklight
+\par inserts additional comments in the communication window. 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=List I/O capabilities
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=getversion
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=Interval (status info every x seconds)
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=ASCII relay 1 ON
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=ASCII relay 1 OFF
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 5    NAME=ASCII relay 2 ON
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 6    NAME=ASCII relay 2 OFF
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 7    NAME=Toggle relay 1
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 8    NAME=Toggle relay 2
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 9    NAME=get Digital Input 1
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 10    NAME=get Digital Input 2
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 11    NAME=get Digital Input 3
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 12    NAME=get Digital Input 4
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 13    NAME=get Digital Input 5
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 14    NAME=get Digital Input 6
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 15    NAME=get Digital Input 7
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 16    NAME=get Digital Input 8
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 17    NAME=get Analog Input 1
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 18    NAME=get Analog Input 2
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 19    NAME=get Analog Input 3
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 20    NAME=get Analog Input 4
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 21    NAME=set Digital Output 1
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 22    NAME=set Digital Output 2
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 23    NAME=set Digital Output 3
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 24    NAME=set Digital Output 4
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=State iolist
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=State Relay 1
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=State Dig. Input
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=State Relay 2
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=State Dig. Output
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par }

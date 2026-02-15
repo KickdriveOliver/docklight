@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue255;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 SendSequenceLoop.pts / SendSequenceLoop.ptp
+\par How to send all Send Sequences in a loop
+\par 
+\par Date: 2012-07-20
+\par Author: Heggelbacher
+\par 
+\par How to Use: 
+\par - Define a list of Send Sequences, or open a Docklight Project file (.ptp) 
+\par - Open the SendSequenceLoop.pts script using menu Scripting -> Open Script...
+\par - Run the script using menu Scripting -> Run Script (Shift + F5)
+\par 
+\par Example output with the sample project SendSequenceLoop.ptp : 
+\par \cf2\f1  
+\par  Sending all sequences, round = 1
+\par 
+\par 10.05.2012 11:02:08.454 [TX] - \cf3 One\cf2 <CR>\cf4 
+\par \cf2 
+\par 10.05.2012 11:02:08.959 [TX] - \cf3 Two\cf2 <CR>\cf3 
+\par \cf2 
+\par 10.05.2012 11:02:09.468 [TX] - \cf3 Three\cf2 <CR>\cf3 
+\par \cf2 
+\par 10.05.2012 11:02:09.978 [TX] - \cf3 Four!\cf2 <CR>\cf3 
+\par \cf2  
+\par  Sending all sequences, round = 2
+\par 
+\par 10.05.2012 11:02:10.517 [TX] - \cf3 One\cf2 <CR>\cf3 
+\par \cf2 
+\par 10.05.2012 11:02:11.025 [TX] - \cf3 Two\cf2 <CR>\cf3 
+\par \cf2 
+\par 
+\par }

@@ -1,0 +1,36 @@
+VERSION
+7
+
+COMMSETTINGS
+0
+1
+2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+SEND
+0
+Test command
+54 65 73 74 0D 0A
+0
+5
+
+RECEIVE
+0
+Acknowledge
+41 43 4B 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+

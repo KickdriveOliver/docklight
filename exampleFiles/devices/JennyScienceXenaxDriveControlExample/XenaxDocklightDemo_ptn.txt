@@ -1,0 +1,204 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue255;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f2\fs20 XenaxDocklightDemo.ptp 
+\par XenaxDocklightDemo1_Polling.pts
+\par XenaxDocklightDemo2_Events.pts
+\par Example ASCII Protocol Implementation for
+\par JennyScience AG XENAX controller + LINAX/ELAX motor stage
+\par 
+\par \pard\sl240\slmult1 
+\par \pard 
+\par www.jennyscience-sued.de / Jenny Science D-S\'fcd GmbH
+\par 
+\par Date: 2019-05-15
+\par Author: Oliver Heggelbacher
+\par 
+\par \b Preconditions\b0 
+\par 
+\par - XENAX Xvi75 or Xvi48 controller accessible via TCP/IP 
+\par - LINAX/ELAX motor stage ready to operate. Confirm this using the Webmotion web interface "Quick Start" mode. 
+\par 
+\par - Docklight Communication Channel is set up with the correct IP address. Default is \b 192.168.2.100:10001\b0 . 
+\par 
+\par NOTE: you can double click on the IP address field in the upper right corner to adjust the TCP address, if necessary. (TCP port number is 10001 always.)
+\par 
+\par \b How To Use : Manual Testing\b0 
+\par 
+\par - Click \b --> Events On EVT1 \b0 to activate the event messages (@.. messages)
+\par 
+\par - Click \b --> Referencing REF \b0 for referencing / homing. 
+\par 
+\par After message \cf2\f1 [Referencing Complete]\cf1\f2  appears:
+\par 
+\par - Click \b --> Set Speed 20000 --> Set Acceleration 400000\b0  to choose starting values for a first low speed test 
+\par 
+\par - Click \b --> Go Position G1000\b0  or \b --> Go Position 20000\b0  for example positioning.
+\par 
+\par 
+\par \b How To Use: Automatic Testing\b0 
+\par 
+\par - Load the Docklight script file \b XenaxDocklightDemo1_Polling.pts \b0 or \b XenaxDocklightDemo2_Events.pts \b0 using menu \b Scripting > Open Script...\b0 
+\par 
+\par - Run the script using menu \b Scripting > Run Script (Shift + F5)\b0 
+\par 
+\par NOTE: The motor stage will move with increasing speed and accelation. Please ensure safe and damage-free operation!
+\par 
+\par \cf2\f1 
+\par 
+\par \cf1\b\f2 Example Output: Manual Testing:\cf2\b0\f1 
+\par 
+\par \cf1\f2 After some manual testing, the Docklight Communication Window could look like this:
+\par \cf2\f1 
+\par 01.03.2019 13:20:01.237 [TX] - \cf3 EVT1\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:01.354 [RX] - \cf4 EVT1\cf2 <CR><LF>\cf4 
+\par >@S1\cf2 <CR><LF>
+\par  [Ready]
+\par 
+\par 01.03.2019 13:20:01.354 [RX] - \cf4 >@H\cf2 <CR><LF>
+\par  [Referencing Complete]
+\par 
+\par 01.03.2019 13:20:01.354 [RX] - \cf4 >\cf2 
+\par 01.03.2019 13:20:04.273 [TX] - \cf3 REF\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:04.398 [RX] - \cf4 REF\cf2 <CR><LF>\cf4 
+\par >@S2\cf2 <CR><LF>
+\par  [Moving]
+\par 
+\par 01.03.2019 13:20:04.514 [RX] - \cf4 >@S1\cf2 <CR><LF>
+\par  [Ready]
+\par 
+\par 01.03.2019 13:20:05.321 [RX] - \cf4 >@H\cf2 <CR><LF>
+\par  [Referencing Complete]
+\par 
+\par 01.03.2019 13:20:05.461 [RX] - \cf4 >\cf2 
+\par 01.03.2019 13:20:07.397 [TX] - \cf3 SP20000\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:07.563 [RX] - \cf4 SP20000\cf2 <CR><LF>\cf4 
+\par >\cf2 
+\par 01.03.2019 13:20:09.649 [TX] - \cf3 AC400000\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:09.784 [RX] - \cf4 AC400000\cf2 <CR><LF>\cf4 
+\par >\cf2 
+\par 01.03.2019 13:20:11.964 [TX] - \cf3 G1000\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:12.121 [RX] - \cf4 G1000\cf2 <CR><LF>\cf4 
+\par >@S2\cf2 <CR><LF>
+\par  [Moving]
+\par 
+\par 01.03.2019 13:20:12.235 [RX] - \cf4 >@S1\cf2 <CR><LF>
+\par  [Ready]
+\par 
+\par 01.03.2019 13:20:12.603 [RX] - \cf4 >\cf2 
+\par 01.03.2019 13:20:16.205 [TX] - \cf3 G20000\cf2 <CR>\cf0 
+\par \cf2 
+\par 01.03.2019 13:20:16.345 [RX] - \cf4 G20000\cf2 <CR><LF>\cf4 
+\par >@S2\cf2 <CR><LF>
+\par  [Moving]
+\par 
+\par 01.03.2019 13:20:16.495 [RX] - \cf4 >@S1\cf2 <CR><LF>
+\par  [Ready]
+\par 
+\par 01.03.2019 13:20:17.361 [RX] - \cf4 >\cf1\f2 
+\par 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=Events On EVT1 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Events Off EVT0
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=Referencing REF 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=Set Speed 20000
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=Set Acceleration 400000
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 5    NAME=Go Position 1000
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 6    NAME=Go Position 20000
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 7    NAME=Power Quit PQ 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 8    NAME=Power Continue PWC
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 9    NAME=Set Speed SP 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 10    NAME=Set Acceleration AC 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 11    NAME=Go Position G 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 12    NAME=Jog Positive JP
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 13    NAME=Jog Negative JN
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 14    NAME=Tell Status TS 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 15    NAME=Tell Process Status Register TPSR 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 16    NAME=Tell Position TP 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 17    NAME=Tell Error TE 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 18    NAME=Tell Error String TES 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 19    NAME=Tell Error History TEB 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 20    NAME=Tell Temperature TT 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 21    NAME=Tell Motion Time TMT 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 22    NAME=Version VER 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 23    NAME=Version SMU VERS
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 24    NAME=Version Bus Module VERB 
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 25    NAME=Reset to Factory Defaults RES
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=Event: Referencing Complete
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=Event: Moving
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=Event: Ready
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=Prompt >
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=TPSR Result
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=TP Result
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par }

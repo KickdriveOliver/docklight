@@ -1,0 +1,27 @@
+{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Segoe UI;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1031\f0\fs20 |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par TestRunner_SIMULATOR.ptp is used as a test candidate to demonstrate the use of the "Testrunner.ptp / Testrunner_auto.pts" example. 
+\par 
+\par It responds to incoming command requests with predefined answers. Most are correct answers, as expected by "Testrunner", but answer22 is a wrong answer that Testrunner should detect as incorrect.
+\par 
+\par |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=answer11
+\par The simulator answers to incoming "cmd11<CR>" with "answer11<CR>"\cf0\f1\fs18 
+\par |~~~~ SEQUENCE DOC END
+\par 
+\par |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=answer12
+\par \cf1\f0\fs20 (see answer11)
+\par \cf0 |~~~~ SEQUENCE DOC END
+\par 
+\par |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=answer13
+\par \cf1 (see answer11)
+\par \cf0 |~~~~ SEQUENCE DOC END
+\par 
+\par |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=answer21
+\par \cf1 (see answer11)
+\par \cf0 |~~~~ SEQUENCE DOC END
+\par 
+\par |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=answer22
+\par \cf1 Here our "device to test" responds with an unexpected / incorrect telegram.
+\par \cf0 |~~~~ SEQUENCE DOC END
+\par }

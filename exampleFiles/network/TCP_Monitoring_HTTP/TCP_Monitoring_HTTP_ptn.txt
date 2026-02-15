@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Arial;}{\f2\froman\fprq2\fcharset0 Times New Roman;}{\f3\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\fs20 TCP_Monitoring_HTTP.ptp
+\par Date: 2007-02-25
+\par Author: Heggelbacher
+\par Applies To: Docklight Scripting V1.7 
+\par 
+\par \f1 This sample project demonstrates how to use Docklight Monitoring Mode for a TCP/IP based connection.
+\par One Docklight monitoring channel connects to the nic.com web server on the HTTP port 80.
+\par For the second Docklight monitoring channel, Docklight acts as a TCP server on port 80.
+\par 
+\par How to use the demo
+\par ================
+\par 
+\par 1.) Choose appropriate display settings: 
+\par - Use the menu Tools-->Options... and disable the option "Add the character description in the ASCII communication window.". The example will produce both ASCII readable and binary data. Using control character comments would slow down and mess up the display.
+\par - In "Display Modes", choose ASCII only. 
+\par 
+\par 2.)  Start the communication in Docklight (press F5).
+\par 
+\par Docklight now establishes an outgoing TCP connection to the server at "nic.com". It also starts listening for incoming connection on the PC's port 80.
+\par 
+\par NOTE: When using a personal firewall software, you will receive an alert when starting the communication in Docklight. You must allow Docklight to establish outgoing connections and accept incoming connections.
+\par 
+\par 3.) Open a web browser and type "localhost" (the localhost name or the loopback IP 127.0.0.1 always points to the own computer).
+\par 
+\par On the Docklight communication window, you will see now the browser's HTTP requests and the answers coming from the nic.com web server. See sample communication data below.
+\par 
+\par The browser will show the nic.com web site, most likely not including images in the first round. See also the screenshot "screenshot_firefox_connects_to_docklight.png".
+\par 
+\par NOTE: If you don't see any data, check your firewall settings! Docklight must be allowed to act as a TCP client
+\par (attempt to establish a connection with the Internet) as well as a TCP server (accept incoming connections).
+\par 
+\par NOTE: Docklight Scripting is not intended as a general network monitor, but rather for single TCP connections as they frequently appear in industrial communication applications. The above demo uses a standard web browser and standard web servers, simply because they are available on any computer with an Internet connection. Please note Docklight Scripting cannot fully bridge the communication between a web browser and a server. Browsers do other stuff on different TCP ports that are not considered in this example. They also try to open more than one TCP connection at a time. Docklight only accepts one connection at a time and refuses further "connect" requests, so the web browser usually does not show the complete web page after the first attempts. Images, for example, are frequently missing.
+\par 
+\par Additional Information
+\par ================\cf0\f2\fs24 
+\par \cf1\f0\fs20 
+\par Sample data from the Docklight communication window \cf2\f3 
+\par 
+\par 16.11.2006 15:29:46.32 [SERVER:80] - \cf3 GET / HTTP/1.1
+\par Host: 127.0.0.1
+\par User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1) Gecko/20061010 Firefox/2.0
+\par Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+\par Accept-Language: en-us,en;q=0.5
+\par Accept-Encoding: gzip,deflate
+\par Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+\par Keep-Alive: 300
+\par Connection: keep-alive
+\par \cf0 
+\par \cf2 
+\par 16.11.2006 15:29:49.93 [NIC.COM:80] - \cf4 HTTP/1.1 200 OK
+\par Date: Thu, 16 Nov 2006 14:29:48 GMT
+\par Server: Apache/1.3.6 (Unix)
+\par Last-Modified: Fri, 20 Oct 2006 20:16:50 GMT
+\par ETag: "8cefa-14ea-45392eb2"
+\par Accept-Ranges: bytes
+\par Content-Length: 5354
+\par Keep-Alive: timeout=25, max=300
+\par Connection: Keep-Alive
+\par Content-Type: text/html
+\par 
+\par <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+\par <html>
+\par <head>
+\par <meta http-equiv="Content-Type"
+\par content="text/html; charset=iso-8859-1">
+\par <title>NIC.COM - Network Information Center, Domain Name Registration</title>\cf1\f0 
+\par ....
+\par 
+\par 
+\par \cf0 
+\par }

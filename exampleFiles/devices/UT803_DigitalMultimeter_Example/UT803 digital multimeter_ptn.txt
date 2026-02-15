@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\nowidctlpar\cf1\lang1033\b\f0\fs20 UT803 digital multimeter.ptp
+\par UT803 digital multimeter_auto.pts
+\par \lang1031\b0 2020-01-09
+\par Author: MF\lang1033\b 
+\par \lang1031\b0 Docklight project and script for Bench type digital multimeter UNI-T UT803
+\par \cf0\b https://www.uni-t.cz/en/p/bench-type-digital-multimeter-uni-t-ut803
+\par 
+\par \cf1\b0 This script shows the current state of modes and values of the UNI-T UT803 inside
+\par the Docklight output tab.
+\par 
+\par You can start/stop a data export/logging in csv format using the [1] and [0] keys. 
+\par 
+\par TIP: Afterwards you can open this file in Excel to create a diagram for further visualization.
+\par 
+\par \cf0 Precondition: 
+\par - RS232 Cable connected
+\par - \cf1 UNI-T UT803 powered\cf0 
+\par - adjust the COM port no. according to your system environment
+\par - Script started [Shift+F5]\cf1 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=Voltage,V,3
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Voltage\cf0 
+\par \cf1 Receive sequence for AC/DC measurement
+\par 
+\par NOTE: The sequence name contains additinal information required for proper display, separated by
+\par commas. The format for the sequence name is:
+\par <MeasurementName>,<baseUnit>,<exponentOffset>
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=Diode Test,V,0
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Diode Test\cf0 
+\par \cf1 Receive sequence for diode test
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=Frequency,Hz,0
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Frequency
+\par Receive sequence for frequency measurement\cf0 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=Ohm,Ohm,1
+\par \cf0\ulnone\f1\fs19 
+\par \pard\f0\fs20 Ohm
+\par \cf1 Receive sequence for Resistor measurement\cf0 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=Temperature,\'b0F,0
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Temperature
+\par Receive sequence for temperature measurement
+\par 
+\par NOTE: See also the Voltage.. sequence for the format used for Sequence name. 
+\par As unit, we define the default \'b0F here. If (flag1 and 8) is set, the script replaces it with "\'b0C"\cf0 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=Capacitance,F,12
+\par \cf0\ulnone\f1\fs19 
+\par \pard\f0\fs20 Capacitance
+\par \cf1 Receive sequence for capacity measurement
+\par Autorange \'b5F, nF
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 6    NAME=Transistor Test,Hfe/Beta,0
+\par \cf0\ulnone\f1\fs19 
+\par \pard\f0\fs20 Transistor Test
+\par \cf1 Receive sequence for transistor test\cf0 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 7    NAME=Current,\'b5A,1
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Current \'b5A
+\par Receive sequence for \'b5A measurement
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 8    NAME=Current,mA,2
+\par \cf0\ulnone\f1\fs19 
+\par \pard\f0\fs20 Current mA
+\par \cf1 Receive sequence for mA measurement
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 9    NAME=Current,A,2
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 Current A
+\par Receive sequence for A measurement
+\par \pard\cf0\f1\fs19 
+\par }

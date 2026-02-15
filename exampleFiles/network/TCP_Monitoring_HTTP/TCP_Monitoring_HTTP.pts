@@ -1,0 +1,7 @@
+DL_SCRIPTVERSION
+1
+28415
+
+' See the notepad of the TCP_Monitoring_HTTP.ptp project 
+' for more information
+DL.OpenProject "TCP_Monitoring_HTTP.ptp"

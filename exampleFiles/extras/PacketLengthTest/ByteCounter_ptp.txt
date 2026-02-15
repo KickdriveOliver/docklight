@@ -1,0 +1,40 @@
+VERSION
+6
+
+COMMSETTINGS
+0
+1
+4
+9600
+2
+63
+4
+0
+0
+
+SEND
+0
+Send 4 Bytes
+07 07 31 04
+0
+5
+
+SEND
+1
+Send 5 Bytes
+07 07 00 04 F0
+0
+5
+
+RECEIVE
+0
+ByteCounter
+??
+-1
+1
+COMMENT 
+0
+1
+0
+0
+

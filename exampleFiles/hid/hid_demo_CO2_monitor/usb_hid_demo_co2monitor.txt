@@ -1,0 +1,36 @@
+
+|~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+
+Docklight Scripting Example Project - usb_hid_demo_co2monitor
+
+Requirements: 
+- Docklight Scripting V2.4.30 or higher 
+- Windows USB hid device 4D9:A052 holtek-zytemp, like TFA-Dostmann AirCO2ntrol or similar
+
+
+|~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=zytemp-send-feature
+
+
+Sends a feature report to initialize / start the data aquisition for the holtek-zytemp sensor
+
+Uses the ":I" report control mode extension introduced with Docklight Scripting V2.4.30 (Customer Support). 
+
+Pos. 1 = FE - Use hid_send_feature_report / Windows HidD_SetFeature
+Pos. 2 = 00 - Report ID zero 
+Pos. 3..10 = Feature report data. A simple empty report seems to work for this purpose. 
+
+
+|~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=zytemp-telegram
+
+
+Detects the data telegram format for the holtek-zytemp CO2 sensor: 
+Pos 1 - sensor data type: 0x50 = CO2, 0x42 = Temperatur, 0x41=Humidity
+Pos 2 + 3 - 16 bit raw data value, Big Endian 
+Pos 4 - Checksum - Sum Mod 256 over Byte 1-3
+Pos 5 - always 0x0D
+Pos 6-8 - 0x00
+
+Example:
+19.01.2025 16:43:41.527 [RX] - 50 02 2F 81 0D 00 00 00  new telegram
+ new co2 value = 559
+

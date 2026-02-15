@@ -1,0 +1,9 @@
+FAILED
+FAILED TESTS:
+A Second Test Case;cmd22;answer22 - failed, received wrong answer: >!&%#Wrong Answer!<
+A Second Test Case;NonExistingCommand;OfCourseNoAnswer - failed, timeout
+PASSED TESTS:
+Test Case 1;cmd11;answer11 - passed
+Test Case 1;cmd12;answer12 - passed
+Test Case 1;cmd13;answer13 - passed
+A Second Test Case;cmd21;answer21 - passed

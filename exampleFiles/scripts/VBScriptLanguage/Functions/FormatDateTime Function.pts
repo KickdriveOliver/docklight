@@ -1,0 +1,13 @@
+DL_SCRIPTVERSION
+1
+37743
+
+' Example FormatDateTime Function
+
+DL.ClearCommWindows
+
+DL.AddComment FormatDateTime(now, vbGeneralDate) & vbCrLf
+DL.AddComment FormatDateTime(now, vbLongDate) & vbCrLf
+DL.AddComment FormatDateTime(now, vbShortDate) & vbCrLf
+DL.AddComment FormatDateTime(now, vbLongTime) & vbCrLf
+DL.AddComment FormatDateTime(now, vbShortTime) & vbCrLf

@@ -1,0 +1,36 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fswiss\fprq2\fcharset0 Calibri;}{\f3\froman\fprq2\fcharset2 Symbol;}{\f4\fmodern\fprq1\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red0\green176\blue80;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\lang1033\f2\fs20 Get micrometer distance reading from Helios Preisser Digital indicator with RS232 data interface. 
+\par 
+\par \pard\fi-360\li720\f3\'b7\tab\f2 Use the \b Get\b0  Send Sequence to request new data
+\par \pard\li360 
+\par \pard The Helios Preisser protocol has two slightly exotic parameters to consider:
+\par \pard\li720\sa160\sl252\slmult1 
+\par \pard\fi-360\li720\f3\'b7\tab\f2 Unusual communication parameters: 4800 Baud, Even Parity, 7 Start Bits, 2 Stop Bits.
+\par \pard\fi-360\li720\sa160\sl252\slmult1\cf0\f3\fs22\'b7\tab\f2 RTS needs to be constantly high to supply Vcc for the data interface.
+\par \f3\'b7\tab\b\f2 DTR\b0  is High by default, but needs to be \b reset to low for > 100ms to request a new measurement\b0  reading.
+\par \pard\cf1\fs20 Example output could look like this:
+\par 
+\par \pard\sa200\sl276\slmult1\cf2\f4 05.10.2018 17:15:40.750 [TX] -
+\par 05.10.2018 17:15:40.952 [RX] - \cf3 +001.84<CR>\cf2 
+\par 05.10.2018 17:15:41.750 [TX] -
+\par 05.10.2018 17:15:41.951 [RX] - \cf3 +002.60<CR>\cf2 
+\par 05.10.2018 17:15:42.751 [TX] -
+\par 05.10.2018 17:15:42.952 [RX] - \cf3 +002.60<CR>\cf2 
+\par 05.10.2018 17:15:43.752 [TX] -
+\par 05.10.2018 17:15:43.954 [RX] - \cf3 +002.60<CR>\cf2 
+\par 05.10.2018 17:15:44.753 [TX] -
+\par 05.10.2018 17:15:44.955 [RX] - \cf3 +000.00<CR>\cf0\lang7\f2\fs22 
+\par \pard\lang1031\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=Get
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=Result
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par }

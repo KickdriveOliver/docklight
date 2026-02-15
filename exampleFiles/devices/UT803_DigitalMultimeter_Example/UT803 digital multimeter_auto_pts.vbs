@@ -1,0 +1,160 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: UT803 digital multimeter_auto.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 33283
+
+' UT803 digital multimeter_auto.pts
+' 2019-12-31
+' Author: MF
+' - visualize the measurement data obtained from the UT803 via RS232 data interface
+' - Export data to CSV-File for Excel Import
+' TIP: Select "Documentation" Tab inside Docklight for project description
+
+' Global variables for storing measurement results and user output
+mode = ""
+valueStr = ""
+baseUnit = ""
+statusText = "Press RS232 button on your UT803"
+logInfo = ""	
+templateRTF = ""
+
+' hide Send/Receive sequence list
+DL.SetWindowLayout "D" 
+
+' Prepare template for DL.SetUserOutput 
+FileInput.OpenFile "UT803-DisplayTemplate.rtf"
+Do Until FileInput.EndOfFile
+	templateRTF = templateRTF & FileInput.GetLine() & vbCrLf
+Loop
+FileInput.CloseFile
+UpdateOutput
+
+DL.StartCommunication
+' Main loop
+Do
+	DL.Pause 10 ' reduce CPU time
+	ManageCsvExport()
+Loop
+
+Sub ManageCsvExport() 
+	' see Docklight Scripting User Manual for DL.GetKeyState and key codes
+	' Note that the the number keys on the separate keypad to the right of your keyboard have different key codes!
+	Const VK_NUMPAD0     = &h60
+	Const VK_NUMPAD1     = &h61
+	If (keyDown(Asc("1")) or keyDown(VK_NUMPAD1)) And Not(FileOutput.IsOpen) Then
+		filePathName = FileOutput.Dialog("Save CSV Data As...", "*.csv") 
+		If Len(filePathName) > 0 Then 
+			If LCase(Right(filePathName, 4)) <> ".csv" Then filePathName = filePathName + ".csv"
+			FileOutput.CreateFile filePathName
+			FileOutput.WriteLine "Date;Time;Value;Unit"	
+			logInfo = GetRtfString("Data export started: " & vbCrLf & filePathName)
+			UpdateOutput			
+		End If
+	ElseIf (keyDown(Asc("0")) or keyDown(VK_NUMPAD0)) And FileOutput.IsOpen Then
+		FileOutput.CloseFile
+		logInfo = "Data export stopped."
+		UpdateOutput		
+	End If
+End Sub
+
+Function keyDown(virtKey) 
+	keyDown = (DL.GetKeyState(virtKey) And 128) > 0 
+End Function
+
+Sub DL_OnReceive()
+	dataString = ""	
+	If (DL.OnReceive_GetSize() = 24) Then
+		' received data sequence looks like this:
+		' characters 1..2: The Docklight Delay Function character definition - wait for communication gap at start
+		' characters 3..13: The 11 character measurement data in readable text formatting
+		' character 14..24: A repetition of the above measurement data, as a simplistic transmission error check
+		If (DL.OnReceive_GetData("A", 3, 11) = DL.OnReceive_GetData("A", 14, 11)) Then 
+			dataString = DL.OnReceive_GetData("A", 3, 11) 
+		End If
+	End If
+	If dataString = "" Then
+		DL.AddComment "Ticket validation error occured!"
+		Exit Sub
+	End If
+	
+	' Extract the measurement's characteristics from the sequence name
+	specification = Split(DL.OnReceive_GetName(), ",") 
+	If UBound(specification) <> 2 Then 
+		DL.AddComment "Invalid Receive Sequence name: " & DL.OnReceive_GetName()
+		Exit Sub
+	End If
+	mode = specification(0)
+	baseUnit = specification(1)
+	exponentOffset = specification(2)
+	
+	' Measurement data flags start at 7th position of dataString. Or 9th in the original receive data.
+	flag1 = DL.OnReceive_Peek(9) - 48
+	flag2 = DL.OnReceive_Peek(10) - 48
+	flag3 = DL.OnReceive_Peek(11) - 48
+	' consider two special cases
+	If (mode = "Voltage") And ((exponentValue And 4) = 4) Then exponentOffset = 5
+	If (baseUnit = "°F") And ((flag1 And 8) = 8) Then baseUnit = "°C"
+	
+	' translate the raised flags to the corresponding text explanation
+	statusText = ""
+	AddStatus flag1, 1, "Overload"
+	AddStatus flag2, 2, "Minimum active"
+	AddStatus flag2, 4, "Maximum active"
+	AddStatus flag2, 8, "Hold  active"
+	AddStatus flag3, 2, "Auto Range active"
+	AddStatus flag3, 4, "AC+DC measurement"
+	AddStatus flag3, 8, "DC measurement"
+	
+	' calulate our measurement float and convert to string
+	exponentValue = CInt(Left(dataString,1))		' first character = exponent
+	absBaseValue = CDbl(Mid(dataString,2,4))		' character 2..5 = base value without prefix
+	value = absBaseValue * 10^(exponentValue - exponentOffset)
+	' consider the "negative value" bit
+	If (flag1 And 4) = 4 Then value = - value
+	valueStr = CStr(value) 
+	
+	' and print/log
+	UpdateOutput		
+	If FileOutput.IsOpen Then
+		' use the Date and Time parts of a Docklight timestamp as two separate CSV columns
+		' (check the DL.GetDocklightTimeStamp on the special arguments used here) 
+		exportStr = Replace(DL.GetDocklightTimeStamp(0, -2, False), " ", " ; ") & valueStr & " ; " & baseUnit
+		FileOutput.WriteLine exportStr
+		DL.AddComment "Exported: " & exportStr
+	End If
+End Sub
+
+Sub AddStatus(value, mask, txt) 
+	' checks if bit mask <mask> is set in <value>. 
+	' if true, add txt and a line break to global variable statusText
+	if (value and mask) = mask Then statusText = statusText & GetRtfString(txt & vbCrLf)
+End Sub 
+
+Sub UpdateOutput()
+	' Create actual user output from template
+	userOuputRTF = Replace(templateRTF, "Mode", mode)
+	If Left(valueStr, 1) = "-" Then 
+		userOuputRTF = Replace(userOuputRTF, "PosValue", "")
+		userOuputRTF = Replace(userOuputRTF, "PosUnit", "")
+		userOuputRTF = Replace(userOuputRTF, "NegValue", valueStr)
+		userOuputRTF = Replace(userOuputRTF, "NegUnit", baseUnit)
+	Else
+		userOuputRTF = Replace(userOuputRTF, "PosValue", valueStr)
+		userOuputRTF = Replace(userOuputRTF, "PosUnit", baseUnit)
+		userOuputRTF = Replace(userOuputRTF, "NegValue", "")
+		userOuputRTF = Replace(userOuputRTF, "NegUnit", "")
+	End If	
+	userOuputRTF = Replace(userOuputRTF, "Status", statusText)
+	userOuputRTF = Replace(userOuputRTF, "LoggingInfo", logInfo)
+	DL.SetUserOutput userOuputRTF, True, False, False
+End Sub
+
+Function GetRtfString(txt) 
+	' escape backslash characters, because they are a control code in RTF
+	GetRtfString = Replace(txt, "\", "\\")
+	' replace Windows CR/LF with RTF \line
+	GetRtfString = Replace(GetRtfString, vbCrLf, "\line ")
+End Function
+

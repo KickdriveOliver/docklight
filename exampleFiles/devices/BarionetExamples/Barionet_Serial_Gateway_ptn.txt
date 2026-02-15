@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\froman\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset0 Arial;}{\f3\fswiss\fcharset0 GillSans;}{\f4\froman\fcharset0 Times New Roman;}{\f5\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\b\f2\fs24 Docklight Project for the Barionet 
+\par Barionet as serial gateway\b0\fs20 
+\par (see \cf2\f3\fs18 http://www.barix.com\cf1\f2\fs20 )
+\par \pard\tx1136\cf0 
+\par \pard\b Example settings for the Barionet\b0 :
+\par Settings/Network: \tab Static IP adress according to the Docklight Project 
+\par \tab\tab\tab (193.67.22.110 / 255.255.255.0 in our example)
+\par Settings/Serial: \tab\tab Serial speed: 9600 Baud
+\par \tab\tab\tab Data bits: 8
+\par \tab\tab\tab Parity bit: disabled
+\par \tab\tab\tab Stop bits: 1
+\par \tab\tab\tab Local port: 10001
+\par \tab\tab\tab (default values)\tab\tab 
+\par 
+\par \b Note: \tab\b0 If you require different network settings, you have to change the Docklight
+\par \tab Project settings. (Menu Tools / Project Settings.. / Tab Communication)
+\par \b 
+\par Docklight Send/Receive Sequences:
+\par \b0 The same sequences are used in the Docklight Project PingPong.ptp. Run a
+\par second Docklight Application with the PingPong Project and connect the PC
+\par COM port with the Barionet Serial Port using a simple null modem cable.
+\par 
+\par This is an example for how to define and use Receive Sequences.
+\par See also in the manual: Examples and Tutorials/
+\par Reacting to a Receive Sequence - Sample Project PingPong.ptp
+\par (Press F1)\f4\fs24 
+\par \f2\fs20 
+\par \pard\f1\fs19 
+\par \cf1\ul\f5\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=Ping
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f5\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Pong
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f5\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=Ping received
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f5\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=Pong received
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par }

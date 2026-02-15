@@ -1,0 +1,14 @@
+DL_SCRIPTVERSION
+1
+33082
+
+'Example ScriptEngine
+
+   Dim s
+   s = ""   ' Build string with necessary info.
+   s = ScriptEngine & " Version "
+   s = s & ScriptEngineMajorVersion & "."
+   s = s & ScriptEngineMinorVersion & "."
+   s = s & ScriptEngineBuildVersion 
+
+DL.AddComment s

@@ -1,0 +1,189 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+193.67.22.110:502
+193.67.22.110:80
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+Relais 1 ON
+15 01 00 00 00 06 01 05 00 00 FF 00
+0
+5
+
+SEND
+1
+Relais 1 OFF
+15 01 00 00 00 06 01 05 00 00 00 00
+0
+5
+
+SEND
+2
+Relais 2 ON
+15 01 00 00 00 06 01 05 00 01 FF 00
+0
+5
+
+SEND
+3
+Relais 2 OFF
+15 01 00 00 00 06 01 05 00 01 00 00
+0
+5
+
+SEND
+4
+Set Digital Output 1 ON
+15 01 00 00 00 06 01 05 00 64 FF 00
+0
+5
+
+SEND
+5
+Set Digital Output 1 OFF
+15 01 00 00 00 06 01 05 00 64 00 00
+0
+5
+
+SEND
+6
+Set Digital Output 2 ON
+15 01 00 00 00 06 01 05 00 65 FF 00
+0
+5
+
+SEND
+7
+Set Digital Output 2 OFF
+15 01 00 00 00 06 01 05 00 65 00 00
+0
+5
+
+SEND
+8
+Set Digital Output 3 ON
+15 01 00 00 00 06 01 05 00 66 FF 00
+0
+5
+
+SEND
+9
+Set Digital Output 3 OFF
+15 01 00 00 00 06 01 05 00 66 00 00
+0
+5
+
+SEND
+10
+Set Digital Output 4 ON
+15 01 00 00 00 06 01 05 00 67 FF 00
+0
+5
+
+SEND
+11
+Set Digital Output 4 OFF
+15 01 00 00 00 06 01 05 00 67 00 00
+0
+5
+
+SEND
+12
+Read Digital Input 1
+15 01 00 00 00 06 01 04 00 C8 00 01
+0
+5
+
+SEND
+13
+Read Analog Input 1
+15 01 00 00 00 06 01 04 01 F4 00 01
+0
+5
+
+SEND
+14
+Read Digital Output state (1=0x64, 2=0x65, 3=0x66, 4=0x67)
+15 01 00 00 00 06 01 04 00 ?? 00 01
+0
+5
+
+RECEIVE
+0
+write single coil: OFF received
+15 01 00 00 00 06 01 05 ?? ?? 00 00
+-1
+1
+COMMENT Write Single Coil: OFF
+0
+1
+0
+0
+
+RECEIVE
+1
+write single coil: ON received
+15 01 00 00 00 06 01 05 ?? ?? FF 00
+-1
+1
+COMMENT Write Single Coil: ON
+0
+1
+0
+0
+
+RECEIVE
+2
+Write single coil Error received
+15 01 00 00 00 06 01 85 ??
+-1
+1
+COMMENT ERROR received
+0
+1
+0
+0
+
+RECEIVE
+3
+Read Input Register
+15 01 00 00 00 05 01 04 02 00 01
+-1
+1
+COMMENT Register is ON
+0
+1
+0
+0
+
+RECEIVE
+4
+Read Input Register
+15 01 00 00 00 05 01 04 02 00 00
+-1
+1
+COMMENT Register is OFF
+0
+1
+0
+0
+

@@ -1,0 +1,38 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: XenaxDocklightDemo.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 52836
+
+' XenaxDocklightDemo.pts
+' Precondition: XenaxDocklightDemo.ptp project file is loaded
+'               (Menu File --> Open Project...) 
+
+
+DL.StartCommunication
+DL.SendSequence "Events On EVT1"
+DL.WaitForSequence "Prompt >"
+DL.ResetReceiveCounter
+DL.SendSequence "Referencing REF"
+DL.WaitForSequence "Event: Referencing Complete"
+speed = 20000
+acceleration = 400000
+Do
+    DL.ResetReceiveCounter
+    DL.SendSequence "Set Speed SP", speed
+    DL.WaitForSequence "Prompt >"
+    DL.ResetReceiveCounter
+    DL.SendSequence "Set Acceleration AC", acceleration
+    DL.WaitForSequence "Prompt >"
+    For position = 5000 To 40000 Step 5000
+        DL.ResetReceiveCounter
+        DL.SendSequence "Go Position G", position
+        DL.WaitForSequence "Event: Ready"
+        DL.ResetReceiveCounter
+        DL.SendSequence "Go Position G", 1000
+        DL.WaitForSequence "Event: Ready"
+    Next
+    speed = speed * 2
+    acceleration = acceleration * 2
+Loop Until speed > 320000

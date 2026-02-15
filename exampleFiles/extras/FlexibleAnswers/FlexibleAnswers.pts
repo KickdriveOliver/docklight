@@ -1,0 +1,44 @@
+DL_SCRIPTVERSION
+1
+24943
+
+' FlexibleAnswers.pts
+' Date: 2006-05-12
+' Author: Heggelbacher
+
+' See the accompanying project file "FlexibleAnswers.ptp" for general information
+
+' Storage for the last flexible answer that was used
+Dim flexVariationIndex(1024)
+
+DL.OpenProject "FlexibleAnswers.ptp"
+DL.StartCommunication
+
+Do
+    DL.Pause 1 ' (the pause reduces CPU load while idle)
+Loop
+
+Sub DL_OnSend()
+    ' If this is a "MASTER" sequence for a flexible answer
+    If Left(DL.OnSend_GetName(), 13) = "_FLEX_MASTER," Then
+        flexIndex = DL.OnSend_GetIndex()
+        ' A valid "FLEX_MASTER" sequence name consists of three comma-separated parts
+        nameArray = Split(DL.OnSend_GetName(), ",")
+        If UBound(nameArray) = 2 Then
+            ' Extract the name and the number of variations available
+            flexName = nameArray(2)
+            flexNum = CInt(nameArray(1))
+            ' Next variation please
+            flexVariationIndex(flexIndex) = flexVariationIndex(flexIndex) + 1
+            ' If no new variations, begin with the first version again
+            If flexVariationIndex(flexIndex) > flexNum Then
+                flexVariationIndex(flexIndex) = 1
+            End If
+            ' Now suppress the original MASTER sequence data, and put the new variation
+            ' in the send queue instead
+            DL.OnSend_SetData ""
+            flexName = "_FLEX_ITEM," + Trim(CStr(flexVariationIndex(flexIndex))) + "," + flexName
+            DL.SendSequence flexName
+        End If
+    End If
+End Sub

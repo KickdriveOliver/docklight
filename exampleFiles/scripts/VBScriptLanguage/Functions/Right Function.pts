@@ -1,0 +1,8 @@
+DL_SCRIPTVERSION
+1
+24466
+
+'Example Right
+
+DL.ClearCommWindows
+DL.AddComment Right("Flachmann und Heggelbacher",12) 

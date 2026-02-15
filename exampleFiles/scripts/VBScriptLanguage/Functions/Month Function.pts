@@ -1,0 +1,8 @@
+DL_SCRIPTVERSION
+1
+34087
+
+'Example Month
+
+DL.ClearCommWindows
+DL.AddComment Month(Now) 

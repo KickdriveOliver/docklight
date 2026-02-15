@@ -1,0 +1,43 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+COM2
+4800
+0
+63
+3
+2
+1
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+Get
+!! 01 && 05 !! 03
+1
+1
+
+RECEIVE
+0
+Result
+?? ?? ?? ?? 2E ?? ?? 0D
+-1
+1
+COMMENT Result: %_A(1, -2)
+1
+1
+0
+0
+

@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red4\green129\blue6;\red37\green0\blue167;\red208\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang1033\fs20 ' crc_reverse_engineering_crc_finder_auto.pts / crc_reverse_engineering_crc_finder.ptp
+\par ' Author: Oliver Heggelbacher
+\par ' Date: 2016-09-19
+\par ' Solves the following CRC reverse engineering puzzles:
+\par ' http://stackoverflow.com/questions/22219796
+\par ' http://stackoverflow.com/questions/29850992
+\par 
+\par This project demonstrates how to reverse-engineer the CRC algorithm for a data protocol where only example messages including the correct CRC value are known, but not the actual CRC algorithm to use.
+\par 
+\par Usage: 
+\par - Press Start Communication (F5) and confirm the sample data to use for the CRC brute-force search. 
+\par 
+\par - after crcReverseEngineer() completes, the script runs in the endless Do ... Loop. If you then click on the Send button ("--->") of one of the predefined  "Send Sequences", the code in Sub DL_OnSend() gets called, which calculates the correct CRC, before sending out the actual message.
+\par 
+\par Example Communication output could look like this: 
+\par \cf2\lang1031\f1  
+\par  Finding CRC for test message (HEX): 10 13 08 20 03 01 11 25 00 00 00 00 E9 64
+\par  Trying CRC spec : CRC:16,1021,FFFF,0000,No,No
+\par  Trying CRC spec : CRC:16,8005,0000,0000,No,No
+\par  Trying CRC spec : CRC:16,8005,FFFF,0000,No,No
+\par  Trying CRC spec : CRC:16,1021,FFFF,FFFF,No,No
+\par  Trying CRC spec : CRC:16,1021,0000,FFFF,No,No
+\par  Trying CRC spec : CRC:16,1021,0000,0000,No,No
+\par  Found it!
+\par  Relevant sequence for checksum from startpos=3 to endpos=12
+\par  08 20 03 01 11 25 00 00 00 00
+\par  CRC spec:   CRC:16,1021,0000,0000,No,No
+\par  CRC result: E9 64 (Integer = 59748)
+\par  
+\par  Use the Send button to send some predefined sequences...
+\par 
+\par 19.09.2016 12:18:12.764 [TX] - \cf3 10 13 08 20 03 01 11 25 00 00 00 00 E9 64 \cf2 
+\par 19.09.2016 12:18:12.768 [RX] - \cf4 10 13 08 20 03 01 11 25 00 00 00 00 E9 64 \cf2 
+\par 19.09.2016 12:18:14.606 [TX] - \cf3 10 13 08 20 03 01 11 25 01 00 00 00 9F D0 \cf2 
+\par 19.09.2016 12:18:14.610 [RX] - \cf4 10 13 08 20 03 01 11 25 01 00 00 00 9F D0 \cf2 
+\par 19.09.2016 12:18:16.030 [TX] - \cf3 10 13 08 20 03 01 11 25 02 00 00 00 04 0C \cf2 
+\par 19.09.2016 12:18:16.034 [RX] - \cf4 10 13 08 20 03 01 11 25 02 00 00 00 04 0C \cf1\f0 
+\par 
+\par Note how the original "stackoverflow 29850992 Seq1" only contain placeholders ("FF FF") at the end, and the DL_OnSend() code provides the actual checksum as seen in the original Stackoverflow post: 
+\par 
+\par 10 13 08 20 03 01 11 25 00 00 00 00 E9 64
+\par 
+\par 10 13 08 20 03 01 11 25 01 00 00 00 9F D0
+\par 
+\par 10 13 08 20 03 01 11 25 02 00 00 00 04 0C\lang1033 
+\par }

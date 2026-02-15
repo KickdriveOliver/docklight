@@ -1,0 +1,37 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: One_LogFile_Per_Day.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 14141
+
+' One_LogFile_Per_Day.pts
+' Date: 2008-04-11
+' Applies to: Docklight Scripting V1.8 
+' Author: Heggelbacher
+' Docklight demo script for using log files names with a date stamp
+' and starting a different log file every day
+
+' This is the base path and location where the log file(s) will be stored
+Const BASE_FILE_PATH = "logfile_"
+' Create ASCII and HEX log files
+const LOG_REPRESENTATIONS = "AH" 
+
+currentLogFileName = ""
+DL.StartCommunication
+Do 
+    newLogFileName = getFileName()
+    ' Time for starting a new file?
+    If newLogFileName <> currentLogFileName Then
+        DL.StartLogging newLogFileName, True, LOG_REPRESENTATIONS
+	  currentLogFileName  = newLogFileName
+    End If
+    DL.Pause 1 ' reduce CPU load
+Loop
+
+Function getFileName()
+    dt = Now
+    ' Compose a file name. 
+    ' The Right() functions ensure that all months, days, hours are printed with two decimals
+    getFileName = BASE_FILE_PATH & Year(dt) & "_" & Right("0" & Month(dt), 2) & "_" & Right("0" & Day(dt), 2) 
+End Function

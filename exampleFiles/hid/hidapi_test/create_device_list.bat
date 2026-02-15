@@ -1,0 +1,1 @@
+hidtest.exe > output.txt

@@ -1,0 +1,234 @@
+```vba
+Attribute VB_Name = "Modul1"
+Sub ImportAndProcessDocklightPTP()
+Attribute ImportAndProcessDocklightPTP.VB_Description = "Import Docklight Project File (.ptp file) "
+Attribute ImportAndProcessDocklightPTP.VB_ProcData.VB_Invoke_Func = "I\n14"
+    Dim fileDialog As fileDialog
+    Dim filePath As String
+    Dim fileNumber As Integer
+    Dim line As String
+    Dim projectRow As Long
+    Dim wsImport As Worksheet, wsGeneralSettings As Worksheet, wsSend As Worksheet, wsReceive As Worksheet, wsExport As Worksheet
+
+    ' Setting up the file dialog
+    Set fileDialog = Application.fileDialog(msoFileDialogFilePicker)
+    With fileDialog
+        .Title = "Select the Docklight Project File"
+        .Filters.Clear
+        .Filters.Add "Docklight Project Files", "*.ptp"
+        If .Show = False Then Exit Sub  ' If user cancels, exit
+        filePath = .SelectedItems(1)
+    End With
+    
+    ' Open the .ptp file
+    fileNumber = FreeFile()
+    Open filePath For Input As #fileNumber
+    
+    ' Initialize worksheets
+    Set wsImport = ThisWorkbook.Sheets("Import")
+    Set wsGeneralSettings = ThisWorkbook.Sheets("General Settings")
+    Set wsSend = ThisWorkbook.Sheets("Send Sequences")
+    Set wsReceive = ThisWorkbook.Sheets("Receive Sequences")
+    Set wsExport = ThisWorkbook.Sheets("Export")
+    ClearSheet wsImport
+    ClearSheet wsGeneralSettings
+    ClearSheet wsSend
+    ClearSheet wsReceive
+    ClearSheet wsExport
+    SetupHeaders wsGeneralSettings, wsSend, wsReceive
+    
+    ' Read file line by line and write to "Import" sheet
+    wsImport.Cells(1, 1).Value = "Imported project file path":
+    wsImport.Cells(2, 1).Value = filePath
+    projectRow = 3
+    Do While Not EOF(fileNumber)
+        Line Input #fileNumber, line
+        wsImport.Cells(projectRow, 1).Value = line
+        projectRow = projectRow + 1
+    Loop
+    Close fileNumber
+    
+    ' Process "Import" sheet to fill other sheets
+    ProcessProjectSheet wsImport, wsGeneralSettings, wsSend, wsReceive, 3
+End Sub
+
+
+Sub ClearSheet(ws As Worksheet)
+    ws.Cells.ClearContents
+End Sub
+
+Sub SetupHeaders(wsGeneralSettings As Worksheet, wsSend As Worksheet, wsReceive As Worksheet)
+    ' Setting up headers
+    wsSend.Cells(1, 1).Resize(1, 6).Value = Array("Index", "Name", "Sequence", "Repeat", "Interval", "Checksum")
+    wsReceive.Cells(1, 1).Resize(1, 12).Value = Array("Index", "Name", "Sequence", "Reaction", "Active", "Comment", "Linebreak", "Trigger", "Stop", "Timestamp", "Checksum", "ChkValidate")
+End Sub
+
+Sub ProcessProjectSheet(wsImport As Worksheet, wsGeneralSettings As Worksheet, wsSend As Worksheet, wsReceive As Worksheet, ByVal projectStartRow As Long)
+    Dim lastRow As Long
+    Dim i As Long, currentRowGeneral As Long, currentRowSend As Long, currentRowReceive As Long
+    
+    lastRow = wsImport.Cells(wsImport.Rows.Count, 1).End(xlUp).Row
+    currentRowGeneral = 2
+    currentRowSend = 2
+    currentRowReceive = 2
+    
+    For i = projectStartRow To lastRow
+        Dim line As String
+        line = wsImport.Cells(i, 1).Value
+        
+        ' Categorize line based on tags and fill sheets
+        Select Case True
+            Case InStr(line, "SEND") > 0
+                currentRowSend = FillWorksheetFromLines("SEND", wsSend, currentRowSend, i + 1, wsImport)
+                
+            Case InStr(line, "RECEIVE") > 0
+                currentRowReceive = FillWorksheetFromLines("RECEIVE", wsReceive, currentRowReceive, i + 1, wsImport)
+                
+            Case Else
+                If currentRowSend = 2 And currentRowReceive = 2 Then
+                    wsGeneralSettings.Cells(currentRowGeneral, 1).Value = line
+                    currentRowGeneral = currentRowGeneral + 1
+                End If
+        End Select
+    Next i
+End Sub
+
+Function FillWorksheetFromLines(tagType As String, ws As Worksheet, resultsRow As Long, projectRow As Long, wsProject As Worksheet) As Long
+    Dim currentColumn As Integer
+    Dim nextLine As String
+    
+    ' Common fields
+    ws.Cells(resultsRow, 1).Value = getLine(wsProject, projectRow)      ' Index
+    ws.Cells(resultsRow, 2).Value = getLine(wsProject, projectRow + 1) ' Name
+    ws.Cells(resultsRow, 3).Value = getLine(wsProject, projectRow + 2) ' Sequence
+    
+    currentColumn = 4
+    ' Tag-specific additional fields
+    If tagType = "SEND" Then
+        ' set defaults, in case older project format is used
+        ws.Cells(resultsRow, 6).Value = ""
+        While (currentColumn <= 6) And getLine(wsProject, projectRow + currentColumn - 1) <> ""
+            nextLine = getLine(wsProject, projectRow + currentColumn - 1)
+            If (currentColumn = 6) Then
+                nextLine = extractTextAfter(nextLine, "CHECKSUM ")
+            End If
+            ws.Cells(resultsRow, currentColumn).Value = nextLine
+            currentColumn = currentColumn + 1
+        Wend
+    ElseIf tagType = "RECEIVE" Then
+        ' set defaults, in case older project format is used
+        ws.Cells(resultsRow, 11).Value = ""
+        ws.Cells(resultsRow, 12).Value = 0
+        While (currentColumn <= 12) And getLine(wsProject, projectRow + currentColumn - 1) <> ""
+            nextLine = getLine(wsProject, projectRow + currentColumn - 1)
+            If (currentColumn = 6) Then
+                nextLine = extractTextAfter(nextLine, "COMMENT ")
+            ElseIf (currentColumn = 11) Then
+                nextLine = extractTextAfter(nextLine, "CHECKSUM ")
+            End If
+            ws.Cells(resultsRow, currentColumn).Value = nextLine
+            currentColumn = currentColumn + 1
+        Wend
+    End If
+    
+    FillWorksheetFromLines = resultsRow + 1
+End Function
+
+Function getLine(ws As Worksheet, rowIndex As Long) As String
+    If Trim(ws.Cells(rowIndex, 1).Value) <> "" Then
+        getLine = ws.Cells(rowIndex, 1).Value
+    Else
+        getLine = ""
+    End If
+End Function
+
+Function extractTextAfter(textLine As String, keyword As String) As String
+    Dim keywordPosition As Integer
+    keywordPosition = InStr(textLine, keyword)
+    If keywordPosition > 0 Then
+        extractTextAfter = Mid(textLine, keywordPosition + Len(keyword))
+    Else
+        extractTextAfter = ""
+    End If
+End Function
+
+Sub ExportPTPFile()
+Attribute ExportPTPFile.VB_Description = "Create the Export table contents and write a new .ptp file"
+Attribute ExportPTPFile.VB_ProcData.VB_Invoke_Func = "E\n14"
+    Dim wsExport As Worksheet, wsGeneral As Worksheet, wsSend As Worksheet, wsReceive As Worksheet
+    Dim i As Long, col As Long, exportRow As Long
+    Dim saveDialog As fileDialog
+    Dim filePath As String
+    Dim fileNumber As Integer
+
+    Set wsImport = ThisWorkbook.Sheets("Import")
+    Set wsExport = ThisWorkbook.Sheets("Export")
+    Set wsGeneral = ThisWorkbook.Sheets("General Settings")
+    Set wsSend = ThisWorkbook.Sheets("Send Sequences")
+    Set wsReceive = ThisWorkbook.Sheets("Receive Sequences")
+    
+    ClearSheet wsExport
+    
+    filePath = Trim(wsImport.Cells(2, 1).Value)
+    filePath = Replace(filePath, ".ptp", "_export.ptp", , , vbTextCompare)
+    wsExport.Cells(1, 1).Value = "Exported project file path":
+    wsExport.Cells(2, 1).Value = filePath
+    
+    ' Populate Export sheet from General Settings, fixed range 2-24
+    exportRow = 3
+    For i = 2 To 24 ' Assuming row 1 has headers
+        wsExport.Cells(exportRow, 1).Value = Trim(wsGeneral.Cells(i, 1).Value)
+        exportRow = exportRow + 1
+    Next i
+    ' Export format is always "VERSION 9" / includes checksum area
+    wsExport.Cells(4, 1).Value = "9"
+
+    ' Populate Export sheet from Send Sequences
+    Dim lastRow As Long
+    lastRow = wsSend.Cells(wsSend.Rows.Count, 1).End(xlUp).Row
+    For i = 2 To lastRow
+        exportRow = exportRow + 1 ' empty row before next element
+        wsExport.Cells(exportRow, 1).Value = "SEND"
+        exportRow = exportRow + 1
+        For col = 1 To 6 ' Total columns in "Send Sequences"
+            If col = 6 Then
+                wsExport.Cells(exportRow, 1).Value = "CHECKSUM " & wsSend.Cells(i, col).Value
+            Else
+                wsExport.Cells(exportRow, 1).Value = Trim(wsSend.Cells(i, col).Value)
+            End If
+            exportRow = exportRow + 1
+        Next col
+    Next i
+
+    ' Populate Export sheet from Receive Sequences
+    lastRow = wsReceive.Cells(wsReceive.Rows.Count, 1).End(xlUp).Row
+    For i = 2 To lastRow
+        exportRow = exportRow + 1 ' empty row before next element
+        wsExport.Cells(exportRow, 1).Value = "RECEIVE"
+        exportRow = exportRow + 1
+        For col = 1 To 12 ' Total columns in "Receive Sequences"
+            If col = 6 Then ' Comment column
+                wsExport.Cells(exportRow, 1).Value = "COMMENT " & wsReceive.Cells(i, col).Value
+            ElseIf col = 11 Then ' Checksum column
+                wsExport.Cells(exportRow, 1).Value = "CHECKSUM " & wsReceive.Cells(i, col).Value
+            Else
+                wsExport.Cells(exportRow, 1).Value = Trim(wsReceive.Cells(i, col).Value)
+            End If
+            exportRow = exportRow + 1
+        Next col
+    Next i
+
+    ' Save to .ptp file
+    lastRow = wsExport.Cells(wsExport.Rows.Count, 1).End(xlUp).Row
+    fileNumber = FreeFile()
+    Open filePath For Output As #fileNumber
+    For i = 3 To lastRow
+        Print #fileNumber, wsExport.Cells(i, 1).Value
+    Next i
+    ' extra empty line, so after import/export a diff of the files should not show any change
+    Print #1, ""
+    Close fileNumber
+
+    MsgBox "Data exported to .ptp file successfully at: " & filePath
+End Sub
+```

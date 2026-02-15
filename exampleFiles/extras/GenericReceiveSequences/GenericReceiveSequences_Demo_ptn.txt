@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 VariousReceiveSequencesExample
+\par Different ways to  recognize RX data as a "Receive Sequence" and trigger a response in Docklight. 
+\par \cf0\f1\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=1
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Test data sequence: a simple "1":
+\par \cf0\f1\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=HelloWorld
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Test data sequence: a full line of text 
+\par \cf0\f1\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=AnyCharacter
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Triggers after any RX byte received. For data streams with high data rates, this is not efficient and can easily overload your display and the Docklight processing. 
+\par 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=AnyTelegramWithPause
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Simple way of grouping several RX bytes - we assume the end of a sequence/telegram/frame is marked by a minimal communication pause. Here a pause of 10 milliseconds is enough. The maximum data length in this example sequence is 100 bytes.
+\par 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=AnyLineWithCR
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Typical text-based telegrams/frames are ended with a CR / decimal 13 byte. This Receive Sequence will capture RX data as a full line of text, up to a length of 80 characters.
+\par 
+\par \pard\cf0\f1\fs19 
+\par }

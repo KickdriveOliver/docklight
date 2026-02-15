@@ -1,0 +1,104 @@
+DL_SCRIPTVERSION
+1
+38588
+
+' crc_reverse_engineering_crc_finder_auto.pts / crc_reverse_engineering_crc_finder.ptp
+' Author: Oliver Heggelbacher
+' Date: 2016-09-19
+' Solves the following CRC reverse engineering puzzles:
+' http://stackoverflow.com/questions/22219796
+' http://stackoverflow.com/questions/29850992
+
+DL.ClearCommWindows
+
+' Stackoverflow http://stackoverflow.com/questions/22219796
+' crcTestMessage = "06 1C 52 45 51 3D 49 4E 49 0D 0A 1E 43 52 43 3D 30 30 30 30 0D 0A 1D 10 9F"
+' Stackoverflow http://stackoverflow.com/questions/29850992/
+crcTestMessage = "10 13 08 20 03 01 11 25 00 00 00 00 E9 64"
+' this is where the resulting spec is stored, for later use in Sub DL_OnSend()
+cStart = 0
+cEnd = 0
+crcSpec = ""
+
+crcReverseEngineer
+
+DL.AddComment
+DL.AddComment "Use the Send button to send some predefined sequences..."
+
+' allow some manual send & checksum calculation later
+Do
+    DL.Pause 1
+Loop
+
+
+Sub DL_OnSend()
+   ' Calc CRC from what we found out by using crcReverseEngineer() once
+   chksumHex = DL.CalcChecksum(crcSpec, DL.OnSend_GetData("H"), "H", cStart, cEnd)
+   ' use this for the last two character positions (high byte, low byte)
+   highByte = cint("&h" + left(chksumHex, 2))
+   lowByte = cint("&h" + right(chksumHex, 2))
+   DL.OnSend_Poke -2, highByte
+   DL.OnSend_Poke -1, lowByte
+End Sub
+
+
+Sub crcReverseEngineer()
+    ' you can try with a different message
+    crcTestMessage = InputBox("Use this HEX test message:", "crcReverseEngineer", crcTestMessage)
+    DL.AddComment
+    DL.AddComment "Finding CRC for test message (HEX): " & crcTestMessage
+
+    Dim crctypes(7)
+    
+    crctypes(0) = "CRC:16,1021,FFFF,0000" ' CCITT
+    crctypes(1) = "CRC:16,8005,0000,0000" ' CRC-16
+    crctypes(2) = "CRC:16,8005,FFFF,0000" ' CRC-MODBUS
+    
+    ' lets try also some nonstandard variations with different init and final Xor, but stick
+    ' to the known two polynoms.
+    
+    crctypes(3) = "CRC:16,1021,FFFF,FFFF"
+    crctypes(4) = "CRC:16,1021,0000,FFFF"
+    crctypes(5) = "CRC:16,1021,0000,0000"
+    
+    crctypes(6) = "CRC:16,8005,FFFF,FFFF"
+    crctypes(7) = "CRC:16,8005,FFFF,0000"
+
+    messageByteLen = (Len(crcTestMessage) + 1) / 3
+    For reflectedInOrOut = 0 To 3
+        For cType = 0 To 7
+            crcSpec = crctypes(cType) & "," & IIf(reflectedInOrOut Mod 2 = 1, "Yes", "No") & "," & IIf(reflectedInOrOut > 1, "Yes", "No")
+         DL.AddComment "Trying CRC spec : " & crcSpec
+            For cStart = 1 To messageByteLen - 4
+                For cEnd = cStart + 1 To messageByteLen - 2
+                    subDataString = Mid(crcTestMessage, (cStart - 1) * 3 + 1, (cEnd - cStart + 1) * 3 - 1)
+                    result = DL.CalcChecksum(crcSpec, subDataString, "H")
+                    actualTelegramCrc = Mid(crcTestMessage, (messageByteLen - 2) * 3 + 1, Len(result))
+                    resultInt = CLng("&h" + Left(result, 2)) * 256 + CLng("&h" + Right(result, 2))
+                    found = (result = actualTelegramCrc)
+                    If found Then
+                        DL.AddComment "Found it!"
+                        DL.AddComment "Relevant sequence for checksum from startpos=" & cStart & " to endpos=" & cEnd
+                        DL.AddComment subDataString
+                        DL.AddComment "CRC spec:   " & crcSpec
+                        DL.AddComment "CRC result: " & result & " (Integer = " & resultInt & ")"
+                        Exit Sub
+                    End If
+                Next
+            Next
+        Next
+    Next
+
+    DL.AddComment "Sorry, no matching CRC spec found"
+    DL.AddComment "sequence:   " & subDataString
+End Sub
+
+Public Function IIf(blnExpression, vTrueResult, vFalseResult)
+  If blnExpression Then
+    IIf = vTrueResult
+  Else
+    IIf = vFalseResult
+  End If
+End Function
+
+

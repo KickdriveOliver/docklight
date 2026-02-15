@@ -1,0 +1,14 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: StrComp Function.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 18731
+
+'Example StrComp Function
+
+Dim MyStr1, MyStr2, MyComp
+MyStr1 = "ABCD": MyStr2 = "abcd"   ' Define variables.
+MyComp = StrComp(MyStr1, MyStr2, 1)   ' Returns 0.
+MyComp = StrComp(MyStr1, MyStr2, 0)   ' Returns -1.
+MyComp = StrComp(MyStr2, MyStr1)   ' Returns 1.

@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\fs20 FlexibleAnswers.ptp / FlexibleAnswers.pts
+\par Date: 2006-05-12
+\par Author: Heggelbacher
+\par 
+\par This Docklight project and sample script demonstrates how to use a flexible response to an incoming sequence, instead of answering with the same sequence all the time.
+\par 
+\par The sample relies on the DL_ONSend() event procedure that allows to manipulate a Send Sequence before its transmission, or even suppress it completely, resp. replace it by a different one. 
+\par 
+\par How it works: 
+\par 1. Define a "master" Send Sequence with the following name syntax
+\par _FLEX_MASTER,<number of variations>,<my sequence name>
+\par Fill the master sequence with some dummy data - this data will never be sent but replaced by the actual item data as described below.
+\par 
+\par 2. Define the variable answers. Choose the following sequence names: 
+\par _FLEX_ITEM,1,<my sequence name>
+\par _FLEX_ITEM,2,<my sequence name>
+\par _FLEX_ITEM,3,<my sequence name>
+\par ....
+\par _FLEX_ITEM,<number of variations>,<my sequence name>
+\par 
+\par 3. Define a Receive Sequence that reacts to your device request. As an action, choose to answer with the _FLEX_MASTER sequence defined above.  
+\par 
+\par 4. Make sure the script code from "FlexibleAnswers.pts" is loaded or included into your own script project. Start the script.
+\par 
+\par Docklight will now answer with different messages after receiving a request from your device. Your output screen could look similar like this: 
+\par \cf2\f1 
+\par 12.05.2006 14:54:25.92 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:25.95 [TX] - \cf4 So long\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:26.51 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:26.53 [TX] - \cf4 and\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:27.00 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:27.01 [TX] - \cf4 thanks for\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:27.58 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:27.59 [TX] - \cf4 all the fish!\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:28.15 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:28.17 [TX] - \cf4 So long\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:28.72 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:28.73 [TX] - \cf4 and\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:29.28 [RX] - \cf3 REQUEST\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:29.29 [TX] - \cf4 thanks for\cf2 <CR><LF>
+\par 
+\par \cf1\f0 
+\par You can also define and use more flexible answers to different requests. The FlexibleAnswers.ptp includes a second definition that provides answers to the difficult question what to have for your breakfast: 
+\par \cf2\f1 
+\par 12.05.2006 14:54:46.58 [RX] - \cf3 Tea or Coffee?\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:46.61 [TX] - \cf4 Tea, please!\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.03 [RX] - \cf3 Tea or Coffee?\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.04 [TX] - \cf4 Coffee, please!\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.44 [RX] - \cf3 Tea or Coffee?\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.45 [TX] - \cf4 Tea, please!\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.87 [RX] - \cf3 Tea or Coffee?\cf2 <CR><LF>
+\par 
+\par 12.05.2006 14:54:47.89 [TX] - \cf4 Coffee, please!\cf2 <CR><LF>
+\par \cf1\f0 
+\par 
+\par }

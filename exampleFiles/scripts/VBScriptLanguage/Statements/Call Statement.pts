@@ -1,0 +1,10 @@
+DL_SCRIPTVERSION
+1
+54310
+
+'Example Call Statement
+
+Call MyFunction("Hello World")
+Function MyFunction(text)
+   DL.AddComment text
+End Function

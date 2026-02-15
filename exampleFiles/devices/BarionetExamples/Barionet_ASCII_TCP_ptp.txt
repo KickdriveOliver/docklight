@@ -1,0 +1,259 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+193.67.22.110:9000
+193.67.22.110:80
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+List I/O capabilities
+69 6F 6C 69 73 74 0D
+0
+5
+
+SEND
+1
+getversion
+76 65 72 73 69 6F 6E 0D
+0
+5
+
+SEND
+2
+Interval (status info every x seconds)
+69 6E 74 65 72 76 61 6C 2C ## ## ?? 0D
+0
+5
+
+SEND
+3
+ASCII relay 1 ON
+73 65 74 69 6F 2C 31 2C 31 0D
+0
+5
+
+SEND
+4
+ASCII relay 1 OFF
+73 65 74 69 6F 2C 31 2C 30 0D
+0
+5
+
+SEND
+5
+ASCII relay 2 ON
+73 65 74 69 6F 2C 32 2C 31 0D
+0
+5
+
+SEND
+6
+ASCII relay 2 OFF
+73 65 74 69 6F 2C 32 2C 30 0D
+0
+5
+
+SEND
+7
+Toggle relay 1
+73 65 74 69 6F 2C 31 2C 39 39 39 0D
+0
+5
+
+SEND
+8
+Toggle relay 2
+73 65 74 69 6F 2C 32 2C 39 39 39 0D
+0
+5
+
+SEND
+9
+get Digital Input 1
+67 65 74 69 6F 2C 32 30 31 0D
+0
+5
+
+SEND
+10
+get Digital Input 2
+67 65 74 69 6F 2C 32 30 32 0D
+0
+5
+
+SEND
+11
+get Digital Input 3
+67 65 74 69 6F 2C 32 30 33 0D
+0
+5
+
+SEND
+12
+get Digital Input 4
+67 65 74 69 6F 2C 32 30 34 0D
+0
+5
+
+SEND
+13
+get Digital Input 5
+67 65 74 69 6F 2C 32 30 35 0D
+0
+5
+
+SEND
+14
+get Digital Input 6
+67 65 74 69 6F 2C 32 30 36 0D
+0
+5
+
+SEND
+15
+get Digital Input 7
+67 65 74 69 6F 2C 32 30 37 0D
+0
+5
+
+SEND
+16
+get Digital Input 8
+67 65 74 69 6F 2C 32 30 38 0D
+0
+5
+
+SEND
+17
+get Analog Input 1
+67 65 74 69 6F 2C 35 30 31 0D
+0
+5
+
+SEND
+18
+get Analog Input 2
+67 65 74 69 6F 2C 35 30 32 0D
+0
+5
+
+SEND
+19
+get Analog Input 3
+67 65 74 69 6F 2C 35 30 33 0D
+0
+5
+
+SEND
+20
+get Analog Input 4
+67 65 74 69 6F 2C 35 30 34 0D
+0
+5
+
+SEND
+21
+set Digital Output 1
+73 65 74 69 6F 2C 31 30 31 2C ?? 0D
+0
+5
+
+SEND
+22
+set Digital Output 2
+73 65 74 69 6F 2C 31 30 32 2C ?? 0D
+0
+5
+
+SEND
+23
+set Digital Output 3
+73 65 74 69 6F 2C 31 30 33 2C ?? 0D
+0
+5
+
+SEND
+24
+set Digital Output 4
+73 65 74 69 6F 2C 31 30 34 2C ?? 0D
+0
+5
+
+RECEIVE
+0
+State iolist
+69 6F 2C ## ?? 2C ## ?? 2C ## ?? 2C ## ?? 2C ## ?? 2C ## ?? 2C ## ?? 0D
+-1
+1
+COMMENT 1. ain, 2. din, 3.aout, 4.dout, 5. IRout., 6.relays, 7.temp.sens.
+1
+1
+0
+0
+
+RECEIVE
+1
+State Relay 1
+73 74 61 74 65 2C 31 2C ?? 0D
+-1
+1
+COMMENT Relay 1
+1
+1
+0
+0
+
+RECEIVE
+2
+State Dig. Input
+73 74 61 74 65 2C 32 ?? ?? 2C ?? 0D
+-1
+1
+COMMENT Dig. Input
+1
+1
+0
+0
+
+RECEIVE
+3
+State Relay 2
+73 74 61 74 65 2C 32 2C ?? 0D
+-1
+1
+COMMENT Relay 2
+1
+1
+0
+0
+
+RECEIVE
+4
+State Dig. Output
+73 74 61 74 65 2C 31 ?? ?? 2C ?? 0D
+-1
+1
+COMMENT Dig. Output
+1
+1
+0
+0
+

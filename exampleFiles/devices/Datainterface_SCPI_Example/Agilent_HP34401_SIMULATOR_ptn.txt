@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 A basic simulator for a multimeter that responds to SCPI :READ? commands with variable data 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=SimResultFixed
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=SimResultVariable
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=:SYST:BEEP
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=:DISP:TEXT Example
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=:READ?
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=:SYST:VERS?
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=*IDN?
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=*RST
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 6    NAME=SYSTem:LOCal 
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 7    NAME=SYSTem:REMote
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 8    NAME=:CONF:VOLT:DC 10,0.1;:SAMP:COUN 1
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par }

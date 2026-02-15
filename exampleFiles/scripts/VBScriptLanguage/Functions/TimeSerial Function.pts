@@ -1,0 +1,10 @@
+DL_SCRIPTVERSION
+1
+4579
+
+'Example TimeSerial Function
+
+DL.ClearCommWindows
+
+DL.AddComment TimeSerial(12 - 6, -15, 0) 
+' Returns 5:45:00 AM

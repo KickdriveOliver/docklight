@@ -1,0 +1,22 @@
+DL_SCRIPTVERSION
+1
+34510
+
+
+'Example TypeName Function
+
+Dim ArrayVar(4), MyType
+NullVar = Null   ' Assign Null value.
+
+DL.ClearCommWindows
+
+DL.AddComment TypeName("VBScript")   ' Returns "String".
+DL.AddComment vbCrLf
+DL.AddComment TypeName(4)            ' Returns "Integer".
+DL.AddComment vbCrLf
+DL.AddComment TypeName(37.50)        ' Returns "Double".
+DL.AddComment vbCrLf
+DL.AddComment TypeName(NullVar)      ' Returns "Null".
+DL.AddComment vbCrLf
+DL.AddComment TypeName(ArrayVar)     ' Returns "Variant()".
+DL.AddComment vbCrLf

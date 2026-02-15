@@ -1,0 +1,13 @@
+DL_SCRIPTVERSION
+1
+54658
+
+' Example SetLocale
+
+DL.ClearCommWindows
+
+SetLocale de-de
+
+Dl.AddComment GetLocale
+
+' German - Germany de-de 0x0407  1031

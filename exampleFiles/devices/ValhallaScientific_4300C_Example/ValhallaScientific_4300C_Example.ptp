@@ -1,0 +1,45 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+COM2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+IDN - Get IEEE or RS-232 identification string
+2A 49 44 4E 3F 0D 0A
+0
+5
+
+SEND
+1
+LOG ON,6 (Logging on, Extended)
+4C 4F 47 20 4F 4E 2C 36 0D 0A
+0
+5
+
+SEND
+2
+LOG OFF (Logging Off)
+4C 4F 47 20 4F 46 46 0D 0A
+0
+5
+

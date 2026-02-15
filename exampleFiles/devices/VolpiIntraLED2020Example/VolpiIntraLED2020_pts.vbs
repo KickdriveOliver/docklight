@@ -1,0 +1,53 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: VolpiIntraLED2020.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 60204
+
+' VolpiIntraLED2020.pts
+' Date: 2007-08-06
+' Author: Flachmann
+' Docklight demo script for controlling the
+' intensity of the Volpi IntraLED 2020
+
+DELAY = 10  'ms
+
+DL.OpenProject "VolpiIntraLED2020"
+
+Do
+
+For i = 0 to 100 step 5
+
+   parameter = Cstr(i)
+
+   DL.SendSequence "Intensity"
+   Dl.Pause DELAY 
+
+   For p = 1 to Len(parameter)
+	DL.SendSequence "", Mid(parameter,p,1)
+	DL.Pause DELAY 
+   Next
+   DL.SendSequence "<CR>"
+   DL.Pause DELAY 
+
+Next
+
+For i = 100 to 0 step -5
+
+   parameter = Cstr(i)
+
+   DL.SendSequence "Intensity"
+   Dl.Pause DELAY 
+
+   For p = 1 to Len(parameter)
+	DL.SendSequence "", Mid(parameter,p,1)
+	DL.Pause DELAY 
+   Next
+   DL.SendSequence "<CR>"
+   DL.Pause DELAY 
+
+Next
+
+
+Loop

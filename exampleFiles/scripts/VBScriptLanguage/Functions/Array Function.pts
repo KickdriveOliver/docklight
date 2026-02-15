@@ -1,0 +1,12 @@
+DL_SCRIPTVERSION
+1
+51681
+
+' Example : Array Function
+
+Dim A
+
+A = Array(10,20,30)
+B = A(2)   ' B is now 30.
+
+DL.AddComment B

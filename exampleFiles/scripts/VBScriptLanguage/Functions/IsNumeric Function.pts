@@ -1,0 +1,13 @@
+DL_SCRIPTVERSION
+1
+10649
+
+'Example IsNumeric
+
+Dim MyVar, MyCheck
+MyVar = 53   ' Assign a value.
+MyCheck = IsNumeric(MyVar)   ' Returns True.
+MyVar = "459.95"   ' Assign a value.
+MyCheck = IsNumeric(MyVar)   ' Returns True.
+MyVar = "45 Help"   ' Assign a value.
+MyCheck = IsNumeric(MyVar)   ' Returns False.

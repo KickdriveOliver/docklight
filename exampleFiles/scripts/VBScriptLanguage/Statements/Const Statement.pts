@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+53547
+
+'Example Const Statement
+
+Const MyVar = 459   				' Constants are Public by default.
+Private Const MyString = "HELP"   		' Declare Private constant.
+Const MyStr = "Hello", MyNumber = 3.4567  ' Declare multiple constants on same line.

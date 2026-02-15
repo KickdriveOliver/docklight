@@ -1,0 +1,786 @@
+VERSION
+9
+
+COMMSETTINGS
+0
+SERVER:10001
+COM2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+XENAX Emulator
+Client
+
+SEND
+0
+EVT1<CR><LF>
+45 56 54 31 0D 0A 3E 40 53 30 0D 0A 3E 40 48 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+1
+REF<CR><LF>
+52 45 46 0D 0A 3E && 0A 40 53 32 0D 0A 3E && 14 40 53 31 0D 0A 3E && 0A 40 53 32 0D 0A 3E && 32 40 53 31 0D 0A 3E 40 48 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+2
+VER<CR><LF>
+56 45 52 0D 0A 76 34 2E 36 38 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+3
+VERB<CR><LF>
+56 45 52 42 0D 0A 76 31 2E 30 30 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+4
+TE<CR><LF>
+54 45 0D 0A 30 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+5
+TES<CR><LF>
+54 45 53 0D 0A 30 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+6
+TMT<CR><LF>
+54 4D 54 0D 0A 36 38 34 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+7
+TT<CR><LF>
+54 54 0D 0A 32 39 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+8
+TS<CR><LF>
+54 53 0D 0A 31 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+9
+IFA<CR><LF>
+49 46 41 0D 0A 31 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+10
+TEB<CR><LF>
+54 45 42 0D 0A 45 72 72 6F 72 20 42 75 66 65 72 20 31 0D 0A 45 72 72 6F 72 20 42 75 66 65 72 20 32 0D 0A 45 72 72 6F 72 20 42 75 66 65 72 20 33 0D 0A 45 72 72 6F 72 20 42 75 66 65 72 20 34 0D 0A 3E
+0
+5
+CHECKSUM  # (off, no checksum)
+
+SEND
+11
+TPSR<CR><LF>
+54 50 53 52 0D 0A 30 32 30 30 30 31 31 61 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+12
+TP<CR><LF>
+54 50 0D 0A 31 30 34 37 34 39 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+13
+PQ<CR><LF>
+50 51 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+14
+EVT0<CR><LF>
+45 56 54 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+15
+SP200000<CR><LF>
+53 50 32 30 30 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+16
+AC1000000<CR><LF>
+41 43 31 30 30 30 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+17
+G80000<CR><LF>
+47 38 30 30 30 30 0D 0A 3E && 32 40 53 32 0D 0A 3E && 32 40 53 31 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+18
+CCM0<CR><LF>
+43 43 4D 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+19
+CCM1<CR><LF>
+43 43 4D 31 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+20
+CRD44000<CR><LF>
+43 52 44 34 34 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+21
+PWC<CR><LF>
+50 57 43 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+22
+JN<CR><LF>
+4A 4E 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+23
+SM<CR><LF>
+53 4D 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+24
+JP<CR><LF>
+4A 50 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+25
+Prompt
+3E
+0
+5
+CHECKSUM 
+
+SEND
+26
+MD<CR><LF>
+4D 44 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+27
+FCT0<CR><LF>
+46 43 54 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+28
+SLPN50000
+53 4C 50 4E 35 30 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+29
+SLPP50000
+53 4C 50 50 35 30 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+30
+TIX<CR><LF>
+54 49 58 0D 0A 41 41 41 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+31
+TOX<CR><LF>
+54 4F 58 0D 0A 35 35 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+32
+TV<CR><LF>
+54 56 0D 0A 31 33 30 30 30 0D 0A 3E
+0
+5
+CHECKSUM 
+
+SEND
+33
+TMC<CR><LF>
+49 46 41 0D 0A 39 38 37 0D 0A 3E
+0
+5
+CHECKSUM 
+
+RECEIVE
+0
+EVT1 requested
+45 56 54 31 0D
+0
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+1
+REF requested
+52 45 46 0D
+1
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+2
+TS requested
+54 53 0D
+8
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+3
+TP requested
+54 50 0D
+12
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+4
+PWC requested
+50 57 43 0D
+21
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+5
+PQ requested
+50 51 0D
+13
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+6
+EVT0 requested
+45 56 54 30 0D
+14
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+7
+SP requested
+53 50 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+15
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+8
+AC requested
+41 43 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+16
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+9
+SLPN requested
+53 4C 50 4E ## ## ## ## ## ## ## ## ## ## ## ## 0D
+17
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+10
+G requested
+47 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+17
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+11
+JP requested
+4A 50 0D
+24
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+12
+JN requested
+4A 4E 0D
+22
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+13
+SM requested
+53 4D 0D
+23
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+14
+CCM0 requested
+43 43 4D 30 0D
+18
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+15
+CCM1 requested
+43 43 4D 31 0D
+19
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+16
+CRD requested
+43 52 44 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+20
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+17
+TE requested
+54 45 0D
+4
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+18
+TES requested
+54 45 53 0D
+5
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+19
+VER requested
+56 45 52 0D
+2
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+20
+VERB requested
+56 45 52 42 0D
+3
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+21
+TPSR requested
+54 50 53 52 0D
+11
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+22
+TT requested
+54 54 0D
+7
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+23
+TMT requested
+54 4D 54 0D
+6
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+24
+TEB requested
+54 45 42 0D
+10
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM  # (off, no checksum)
+0
+
+RECEIVE
+25
+IFA requested
+49 46 41 0D
+9
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+26
+Single CR
+&& 0A 0D && 0A
+25
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+27
+MD requested
+4D 44 ?? 0D
+26
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+28
+FCT requested
+46 43 54 ?? 0D
+27
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+29
+SLPP requested
+53 4C 50 50 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+29
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+30
+SLPN requested
+53 4C 50 4E ## ## ## ## ## ## ## ## ## ## ## ## 0D
+28
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+31
+TIX requested
+54 49 58 0D
+30
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+32
+TOX requested
+54 4F 58 0D
+31
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+33
+TV requested
+54 56 0D
+32
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+
+RECEIVE
+34
+IFA requested
+49 46 41 0D
+33
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM 
+0
+

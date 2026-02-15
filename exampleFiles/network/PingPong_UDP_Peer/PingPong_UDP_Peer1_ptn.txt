@@ -1,0 +1,30 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fswiss Arial;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\fs20 PingPong_UDP_Peer1.ptp
+\par Author: Heggelbacher
+\par Date: 2007-03-08
+\par 
+\par Demonstrates the use of Docklight Scripting as an UDP peer. It works similar to the original serial port tutorial "PingPong.ptp" (See the manual at "Examples and Tutorials --> Reacting to a Receive Sequence...").
+\par 
+\par In the "UDP Peer" version of this demo, two Docklight Scripting applications are started on the same computer: 
+\par - One with the PingPong_UDP_Peer1.ptp project. It will transmit data on port 5001 and listen on port 5002.
+\par - One with the PingPong_UDP_Peer2.ptp project. It will transmit data on port 5002 and listen on port 5001.
+\par 
+\par Usage
+\par 1. Start the communication for the PingPong_UDP_Peer1.ptp project (F5)
+\par 2. \lang1031\f1 If you are using a Personal Firewall on you\f2 r\f1  PC, it will probably notify you that Docklight Scripting wants to act \f2 both as a server and a client\f1 . Confirm and allow, if requir\f2 ed.\lang1033\f0 
+\par 3. Double click the PingPong_UDP_Peer2.ptp file. A second Docklight Scripting application will be opened.
+\par 4. Press the ---> Send Sequence button for the "Ping" sequence in the second application
+\par 
+\par The two peers now exchange data as if two Docklight applications were connected by a serial null-modem link.
+\par 
+\par The communication window on peer 1 could look like this:
+\par \cf2\f3 
+\par 3/8/2007 18:51:01.03 [RX] - \cf3 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:51:01.03 [TX] - \cf4 o---- Pong\cf2 
+\par 3/8/2007 18:51:01.06 [RX] - \cf3 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:51:01.07 [TX] - \cf4 o---- Pong\cf2 
+\par 3/8/2007 18:51:01.10 [RX] - \cf3 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:51:01.10 [TX] - \cf4 o---- Pong\cf2 
+\par 3/8/2007 18:51:01.15 [RX] - \cf3 ----o Ping\cf2  "Ping" received \cf1\f0 
+\par }

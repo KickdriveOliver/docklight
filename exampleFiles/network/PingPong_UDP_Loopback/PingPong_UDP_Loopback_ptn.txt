@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fswiss Arial;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue255;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 PingPong_UDP_Loopback.ptp
+\par Author: Heggelbacher
+\par Date: 2007-03-08
+\par 
+\par Demonstrates the use of Docklight Scripting as an UDP peer client talking to himself. It works similar to the original serial port tutorial "PingPong.ptp" when used on a loopback connector. (See the manual at "Examples and Tutorials --> Reacting to a Receive Sequence...").
+\par 
+\par In the UDP version of this demo, Docklight Scripting acts as an UDP peer. It sends data to the LOCALHOST network name (which always points to the own computer), and waits for data on port 50000.
+\par 
+\par Usage
+\par 1. Press the ---> Send Sequence button for the "Ping" sequence.
+\par 2. \lang1031\f1 If you are using a Personal Firewall on you\f2 r\f1  PC, it will probably notify you that Docklight Scripting wants to act \f2 both as a server and a client\f1 . Confirm and allow, if requir\f2 ed.\lang1033\f0 
+\par 
+\par The communication window could look like this:
+\par \cf2\f3 
+\par 3/8/2007 18:44:02.53 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 18:42:35.67 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:44:02.54 [TX] - \cf3 o---- Pong\cf2 
+\par 3/8/2007 18:44:02.54 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:44:02.56 [TX] - \cf3 o---- Pong\cf2 
+\par 3/8/2007 18:44:02.56 [RX] - \cf4 o---- Pong\cf2  "Pong" received 
+\par 3/8/2007 18:44:02.57 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 18:44:02.57 [RX] - \cf4 o---- Pong\cf2  "Pong" received 
+\par 3/8/2007 18:44:02.59 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 18:44:02.59 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 18:44:02.60 [TX] - \cf3 o---- Pong\cf1\f0 
+\par ....
+\par }

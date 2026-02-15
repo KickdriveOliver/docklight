@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+35136
+
+'Example CDbl Function
+
+Dim MyCurr, MyDouble
+MyCurr = CCur(234.456784)              ' MyCurr is a Currency (234.4567).
+MyDouble = CDbl(MyCurr * 8.2 * 0.01)   ' Convert result to a Double (19.2254576).

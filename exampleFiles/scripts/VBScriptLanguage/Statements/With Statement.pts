@@ -1,0 +1,10 @@
+DL_SCRIPTVERSION
+1
+1716
+
+'Example With Statement
+
+With DL
+   .ClearCommWindows
+   .AddComment "Some Text"
+End With

@@ -1,0 +1,13 @@
+DL_SCRIPTVERSION
+1
+32551
+
+'Example Randomize Statement
+
+Dim MyValue, Response
+Randomize   ' Initialize random-number generator.
+Do Until Response = vbNo
+   MyValue = Int((6 * Rnd) + 1)   ' Generate random value between 1 and 6.
+   MsgBox MyValue
+   Response = MsgBox ("Roll again? ", vbYesNo)
+Loop

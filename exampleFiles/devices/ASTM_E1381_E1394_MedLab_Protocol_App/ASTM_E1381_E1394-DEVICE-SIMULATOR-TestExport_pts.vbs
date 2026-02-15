@@ -1,0 +1,27 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: ASTM_E1381_E1394-DEVICE-SIMULATOR-TestExport.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 31924
+
+' ASTM_E_1384-DEVICE-SIMULATOR-TestExport.pts
+' Date 2020-04-14
+' Test the "ASTM_E1381_E1394.ptp" capability of receiving data
+DL.OpenProject "ASTM_E1381_E1394-DEVICE-SIMULATOR"
+DL.ResetReceiveCounter
+DL.SendSequence "ENQ"
+DL.WaitForSequence "ACK"
+FileInput.OpenFile "IMPORT.dat"
+Do Until FileInput.EndOfFile
+   DL.ResetReceiveCounter
+   nextLine = FileInput.GetLine()
+   nextLine = Replace(nextLine, "<CR>", vbCr) ' replace the <CR> description text with an actual CR control character
+   ' We need to pass this as a HEX sequence to DL.SendSequence. 
+   ' In ASCII, a space would mean "end of parameter". 
+   nextLineAsHex =  DL.ConvertSequenceData("fromText", nextLine, "H") 
+   DL.SendSequence "Data Line", nextLineAsHex , "H"
+   DL.WaitForSequence "ACK"
+Loop
+FileInput.CloseFile
+DL.SendSequence "EOT"

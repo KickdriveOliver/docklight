@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+46178
+
+' Example FormatPercent Function
+
+DL.ClearCommWindows
+
+Dl.AddComment FormatPercent(2/32) ' result:  6.25%.

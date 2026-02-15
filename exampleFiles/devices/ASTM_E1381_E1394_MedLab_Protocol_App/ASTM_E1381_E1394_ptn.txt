@@ -1,0 +1,111 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\fmodern\fprq1\fcharset0 Consolas;}{\f4\fmodern\fprq1\fcharset0 Courier New;}{\f5\fmodern\fprq1\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;\red4\green129\blue6;\red37\green0\blue167;\red208\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f2\fs20 ASTM file transfer and receiving example
+\par Date: 2020-04-14
+\par Author: Heggelbacher
+\par 
+\par PLEASE NOTE: This is a only partially tested example / proof of concept for ASTM E1381 / E1394 based data exchange between Docklight and medical equipment, e.g. a blood sample analyzer. It is the user's responsibility to evaluate the usefulness and accuracy of any part of this example. THIS EXAMPLE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+\par 
+\par Usage: 
+\par 
+\par - If required, correct the serial port settings (COMx, baud rate, ...), save the ASTM.ptp project file and start the script again with Scripting -> Run Script (Shift+F5) 
+\par 
+\par DEMO:
+\par 
+\par - Click  the "TransferFile" sequence to transfer the example data file EXPORT.DAT to the machine.
+\par 
+\par Example output in the wee hours of the morning could look like this:
+\par \cf2\f3 
+\par 27.08.2017 01:23:44.170 [TX] - <ENQ>\cf3 _\cf2 
+\par 27.08.2017 01:23:44.175 [RX] - <ACK>\cf4 _\cf2 
+\par 27.08.2017 01:23:44.179 [TX] - <STX>\cf3 _1H|\\^&|||AML|52ND STREET|||8N1|LAB||P|1|\cf2 <CR>
+\par <ETX>\cf3 _CD\cf2 <CR><LF>\cf0 
+\par \cf2 
+\par 27.08.2017 01:23:44.182 [RX] - <ACK>\cf4 _\cf2 
+\par 27.08.2017 01:23:44.191 [TX] - <STX>\cf3 _2P|1|26502|||Kelly,Meena|\cf2 <CR>
+\par <ETX>\cf3 _17\cf2 <CR><LF>
+\par \cf1\f2 
+\par ....
+\par \cf2\f3 
+\par 27.08.2017 01:23:54.279 [RX] - <ACK>\cf4 _\cf2 
+\par 27.08.2017 01:23:54.296 [TX] - <STX>\cf3 _4O|1|26644||^^^TES|R|||||||||||||||||||||||||\cf2 <CR>
+\par <ETX>\cf3 _AA\cf2 <CR><LF>\cf0 
+\par \cf2 
+\par 27.08.2017 01:23:54.303 [RX] - <ACK>\cf4 _\cf2 
+\par 27.08.2017 01:23:54.318 [TX] - <STX>\cf3 _5L|1|N\cf2 <CR>
+\par <ETX>\cf3 _08\cf2 <CR><LF>\cf0 
+\par \cf2 
+\par 27.08.2017 01:23:54.325 [RX] - <ACK>\cf4 _\cf2 
+\par 27.08.2017 01:23:54.339 [TX] - <EOT>\cf3 _\cf1\f2 
+\par 
+\par The script also reacts to incoming data and stores it in a file "IMPORT_.." plus added date/time. 
+\par 
+\par When sending back the above example data, and reading it back with a second Docklight ASTM.pts sample, the resulting file IMPORT_2015-11-27 01-23.DAT
+\par  could look like this:
+\par 
+\par \cf0\f4\fs18 H|\\^&|||AML|52ND STREET|||8N1|LAB||P|1|<CR>
+\par P|1|26502|||Reese,Rosita|<CR>
+\par \cf1\f5\fs20 ...\cf0\f4\fs18 
+\par O|1|26644||^^^TES|R|||||||||||||||||||||||||<CR>
+\par L|1|N<CR>
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=TransferFile
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Frame
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=ENQ
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=EOT
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=ACK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 5    NAME=NAK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 6    NAME=TextData
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=ACK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=EOT
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=ENQ
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=FrameETX Checksum OK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=FrameETX Checksum Wrong
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=FrameETB Checksum OK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 6    NAME=FrameETB Checksum Wrong
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par }

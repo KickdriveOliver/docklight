@@ -1,0 +1,67 @@
+{\rtf1\fbidis\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Segoe UI;}{\f2\fswiss\fprq2\fcharset0 Segoe UI;}{\f3\fmodern\fprq1\fcharset0 Consolas;}{\f4\froman\fprq2\fcharset2 Symbol;}{\f5\fswiss\fprq2\fcharset0 Calibri;}{\f6\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red4\green129\blue6;\red37\green0\blue167;\red208\green0\blue0;}
+\viewkind4\uc1\pard\ltrpar\cf1\lang1031\f0\fs20 |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\f1\fs18 TestRunner_auto.pts
+\par Date: 2019-07-11
+\par Requires: Docklight Scripting V2.3.0 or higher
+\par Author: Heggelbacher
+\par  
+\par A small test runner for a protocol with CR-terminated ASCIII commands. 
+\par 
+\par \lang1033\f2 The runner reads a \f3\fs20 Commandlist.csv\f2\fs18  file in the following format
+\par 
+\par \f3 Test Case 1;cmd11;answer11
+\par ;cmd12;answer12
+\par ;cmd13;answer13
+\par \i\f2 ... more commands ...
+\par \i0\f3 Test Case 2;cmd21;answer21
+\par ;cmd22;answer22
+\par ;cmd23;answer23
+\par \i\f2 .... and so on ...
+\par \lang1031\i0\f1 
+\par \cf1\f0\fs20 How to use this example:
+\par \pard\ltrpar\fi-360\li720\sa160\sl252\slmult1\lang1033\f4\'b7\tab\f5 Start the script  using menu \b Scripting -> Run Script (Shift+F5)\b0  and follow the instructions\lang1031\f0 
+\par \pard\ltrpar After a test run, the example should show 4 successful commands and 2 failures (wrong answer; timeout). The Communication window output in HEX could look like this: 
+\par 
+\par \cf2\f6  Opening the Simulator.ptp test candidate in a second Docklight instance, using DL.ShellRun ...
+\par  
+\par  Please go to the second Docklight with the 'Simulator.ptp' project and
+\par  * Start communication (press F5).
+\par  Did you start it? Ready for the the test run? --> Press ENTER to continue
+\par 
+\par  
+\par  Running the tests defined in 'CommandList.csv'...
+\par  Next test: Test Case 1;cmd11;answer11
+\par 
+\par 11.07.2019 12:55:17.351 [TX] - \cf3 63 6D 64 31 31 0D \cf2 
+\par 11.07.2019 12:55:17.372 [RX] - \cf4 61 6E 73 77 65 72 31 31 0D \cf2  Result: Test Case 1;cmd11;answer11 - passed
+\par  
+\par  Next test: Test Case 1;cmd12;answer12
+\par 
+\par 11.07.2019 12:55:17.405 [TX] - \cf3 63 6D 64 31 32 0D \cf2 
+\par 11.07.2019 12:55:17.428 [RX] - \cf4 61 6E 73 77 65 72 31 32 0D \cf2  Result: Test Case 1;cmd12;answer12 - passed
+\par  
+\par  Next test: Test Case 1;cmd13;answer13
+\par 
+\par 11.07.2019 12:55:17.455 [TX] - \cf3 63 6D 64 31 33 0D \cf2 
+\par 11.07.2019 12:55:17.465 [RX] - \cf4 61 6E 73 77 65 72 31 33 0D \cf2  Result: Test Case 1;cmd13;answer13 - passed
+\par  
+\par  Next test: A Second Test Case;cmd21;answer21
+\par 
+\par 11.07.2019 12:55:17.494 [TX] - \cf3 63 6D 64 32 31 0D \cf2 
+\par 11.07.2019 12:55:17.502 [RX] - \cf4 61 6E 73 77 65 72 32 31 0D \cf2  Result: A Second Test Case;cmd21;answer21 - passed
+\par  
+\par  Next test: A Second Test Case;cmd22;answer22
+\par 
+\par 11.07.2019 12:55:17.527 [TX] - \cf3 63 6D 64 32 32 0D \cf2 
+\par 11.07.2019 12:55:17.542 [RX] - \cf4 21 26 25 23 57 72 6F 6E 67 20 41 6E 73 77 65 72 21 0D \cf2  Result: A Second Test Case;cmd22;answer22 - failed, received wrong answer: >!&%#Wrong Answer!<
+\par  
+\par  Next test: A Second Test Case;NonExistingCommand;OfCourseNoAnswer
+\par 
+\par 11.07.2019 12:55:17.577 [TX] - \cf3 4E 6F 6E 45 78 69 73 74 69 6E 67 43 6F 6D 6D 61 6E 64 0D \cf2  Result: A Second Test Case;NonExistingCommand;OfCourseNoAnswer - failed, timeout
+\par  
+\par  Test results
+\par  =================================
+\par  Passed = 4
+\par  Failed = 2\cf0\f1\fs18 
+\par }

@@ -1,0 +1,51 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: SendByteTiming.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 45955
+
+' SendByteTiming.pts
+' User-defined delay between individual characters. Each sequence is 
+' splitted into single characters, the characters are sent out with
+' a user-defined delay. This is useful e.g. for 8051 microcontroller 
+' applications that lack a serial input buffer.
+'
+' Date: 2004-11-07
+' Applies to: Docklight Scripting V1.5
+' Author: Heggelbacher
+'
+
+sendBufferStr = ""
+pauseBetweenCharacters = InputBox("Enter the minimum pause between two single characters [milliseconds]" + vbCrLf + "(Additional delay of up to 10 milliseconds depending on PC hardware and Docklight display settings.)", "Send Byte Timing", 100)
+' Ensure this is an integer value
+pauseBetweenCharacters  = CInt(pauseBetweenCharacters)
+DL.AddComment "Delay between characters enabled (" & pauseBetweenCharacters & " milliseconds)"
+
+Do
+    DL.Pause 1 ' helps to reduce CPU load while idle
+Loop
+
+Sub DL_OnSend()
+    ' Everything that's more than one byte will be copied to a second string
+    ' buffer
+    If DL.OnSend_GetSize() > 1 Then
+        ' Append to send buffer in hex format
+          sendBufferStr = sendBufferStr + " " + DL.OnSend_GetData("H")
+        ' Deleting this sequence's data, since it has been added as
+          ' single byte sequences now (avoid duplicate send).
+        DL.OnSend_SetData "", "H"
+    End If
+    ' Queue next character
+    If Len(sendBufferStr) > 0 Then
+        nextChar = Left(sendBufferStr, 3)
+        sendBufferStr = Mid(sendBufferStr, 4) ' remove from buffer
+        ' Queue next character as a single byte HEX sequence
+        DL.SendSequence "", nextChar, "H"
+    End If
+    ' Delay between each character, if more than 1 millisecond
+    ' (one millisecond will already be introduced by the main loop)
+    If pauseBetweenCharacters > 1 Then
+        DL.Pause pauseBetweenCharacters - 1
+    End If
+End Sub

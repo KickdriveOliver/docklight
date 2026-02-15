@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f2\fs20 SideChannel_Example.ptp / SideChannel_Example.pts
+\par Date: 2019-12-01
+\par Author: Heggelbacher
+\par 
+\par Support for additional communication channels, besides the regular RX/TX or two-channel-monitoring. 
+\par   
+\par \b success = DL.OpenSideChannel(<newSettings> [, <channelNo>] [, <rxChannelTag>])
+\par \b0   Open an extra communication channel using the communication settings from <newSettings>.
+\par   Valid <channelNo> is 3 (default) or 4-10
+\par   The data received on this channel will enter the regular communication data display, but is framed 
+\par   by a XML style opening and closing tag as specified by <rxChannelTag>. 
+\par   The default setting "Channel3" will result in RX data format like
+\par   <Channel3>... data received on the side channel... </Channel3>
+\par   if <rxChannelTag> is "norx", the received communication data is not displayed.
+\par   if <rxChannelTag> is empty, no channel tags are used and you cannot distinguish the incoming RX data from "regular" Docklight RX data. 
+\par 
+\par \b DL.CloseSideChannel([<channelNo>])
+\par \b0   Closes the communication channel. Valid <channelNo> is 3 (default) or 4-10.
+\par 
+\par   For sending data on a side channel, use
+\par \b success = DL.DirectSend(<channelNo>, <data> [, <representation>])
+\par \b0   E.g. 
+\par   DL.DirectSend 3, "01 02 03 04 FF FA 00", "H"\ul\f3 
+\par \pard\cf0\ulnone\f1\fs19 
+\par \cf1\ul\f3\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=Channel3
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f3\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=Channel4
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f3\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=HelloWorld
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f3\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=LineBreakAfterClosingTag
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f3\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=BinaryTest
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par }

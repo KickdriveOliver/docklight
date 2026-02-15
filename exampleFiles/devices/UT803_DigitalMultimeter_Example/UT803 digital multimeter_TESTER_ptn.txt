@@ -1,0 +1,18 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f0\fs20 This can be used to test the actual 
+\par "UT803 digital multimeter" project&script, if you connect two Docklight's via 
+\par a Virtual Null Modem (see https://docklight.de/manual/index.html?virtualnullmodem.htm ). 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=Example: Temperature
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Example Resistance
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par }

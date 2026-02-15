@@ -1,0 +1,97 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+COM2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+SEND
+0
+Firmware
+76
+0
+5
+
+SEND
+1
+Status
+72
+0
+5
+
+SEND
+2
+Intensity
+69
+0
+5
+
+SEND
+3
+<CR>
+0D
+0
+5
+
+SEND
+4
+Intensity 0%
+69 && 01 30 && 01 0D
+0
+5
+
+SEND
+5
+Intensity 50%
+69 && 01 35 && 01 30 && 01 0D
+0
+5
+
+SEND
+6
+Intensity 10%
+69 && 01 31 && 01 30 && 01 0D
+0
+5
+
+SEND
+7
+Intensity 100%
+69 && 01 31 && 01 30 && 01 30 && 01 0D
+0
+5
+
+RECEIVE
+0
+v
+76
+3
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+1
+r
+72
+3
+1
+COMMENT 
+0
+1
+0
+0
+

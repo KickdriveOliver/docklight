@@ -1,0 +1,15 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 Valhalla Scientific, Inc VALHALLA 4300C Digital Micro-Ohmmeter
+\par Basic example for requesting device informaton and measuring data from the 4300C via its RS232 interface.
+\par Date: 2016-07-31
+\par Author: Heggelbacher
+\par 
+\par Please refer to the manufacturer's website for more information
+\par https://valhallascientific.com/instruments/ohmmeters-igniter-testers/model-4300c/
+\par 
+\par and the Stackoverflow post that led to this example:
+\par http://stackoverflow.com/questions/38384875/could-not-get-receive-sequence-from-com-ports-rx-line-in-docklight
+\par 
+\par \cf0\fs23 
+\par }

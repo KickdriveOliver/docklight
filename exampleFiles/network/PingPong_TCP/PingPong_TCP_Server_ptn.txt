@@ -1,0 +1,43 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fswiss Arial;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue255;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 PingPong_TCP_Server.ptp
+\par Author: Heggelbacher
+\par Date: 2007-02-20
+\par 
+\par Demonstrates the use of Docklight Scripting as a TCP server and client. It works similar to the original serial port tutorial "PingPong.ptp" (See the manual at "Examples and Tutorials --> Reacting to a Receive Sequence...").
+\par 
+\par In the TCP version of this demo, two Docklight Scripting applications are started on the same computer: 
+\par - One with the PingPong_TCP_Server.ptp project. It will act as a TCP server on the TCP port 10001.
+\par - One with the PingPong_TCP_Client.ptp project. It will connect to the other Docklight Scripting application. 
+\par 
+\par Usage
+\par 1. Start the communication for the PingPong_TCP_Server.ptp project (F5)
+\par 2. \lang1031\f1 If you are using a Personal Firewall on you\f2 r\f1  PC, it will probably notify you that Docklight Scripting wants to act as a server. Confirm and allow, if requir\f2 ed.\lang1033\f0 
+\par 3. Double click the PingPong_TCP_Client.ptp file. A second Docklight Scripting application for the client role will be opened.
+\par 4. In the 'client' Docklight, press the ---> Send Sequence button for the "Ping" sequence.
+\par 5. \lang1031\f1 If you are using a Personal Firewall on you\f2 r\f1  PC, allow Docklight Scripting to connect to the Internet.
+\par \lang1033\f0 
+\par The 'client' Docklight now connects to the 'server' Docklight and data is exchanged as if the two Docklight applications were connected by a serial null-modem link.
+\par 
+\par The communication window on the client side now displays the following messages: 
+\par \cf2\f3 
+\par 3/8/2007 12:09:29.78 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 12:09:29.85 [RX] - \cf4 o---- Pong\cf2  "Pong" received 
+\par 3/8/2007 12:09:29.85 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 12:09:29.90 [RX] - \cf4 o---- Pong\cf2  "Pong" received 
+\par 3/8/2007 12:09:29.90 [TX] - \cf3 ----o Ping\cf2 
+\par 3/8/2007 12:09:29.95 [RX] - \cf4 o---- Pong\cf2  "Pong" received 
+\par 3/8/2007 12:09:29.95 [TX] - \cf3 ----o Ping
+\par \cf1\f0 ... 
+\par 
+\par On the server side you will see something like\cf2\f3 
+\par 
+\par 3/8/2007 12:09:29.79 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 12:09:29.79 [TX] - \cf3 o---- Pong\cf2 
+\par 3/8/2007 12:09:29.87 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 12:09:29.87 [TX] - \cf3 o---- Pong\cf2 
+\par 3/8/2007 12:09:29.92 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par 3/8/2007 12:09:29.92 [TX] - \cf3 o---- Pong\cf2 
+\par 3/8/2007 12:09:29.96 [RX] - \cf4 ----o Ping\cf2  "Ping" received 
+\par \cf1\f0 ... 
+\par }

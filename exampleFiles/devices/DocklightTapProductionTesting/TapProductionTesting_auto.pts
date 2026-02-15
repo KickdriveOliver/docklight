@@ -1,0 +1,277 @@
+DL_SCRIPTVERSION
+1
+45940
+
+Const generatorPort = "COM1"
+Const serialStd = "9600,NONE,8,1"
+Const serialHighspeedTap = "230400,NONE,8,1"
+Const serialHighspeedPro = "961000,NONE,8,1"
+
+DL.ClearCommWindows
+
+DL.AddComment "Docklight Tap / EZ Tap unit testing"
+DL.AddComment "v0.3 / 2017-06-27 / www.fuh-edv.de"
+DL.AddComment "Requirements"
+DL.AddComment "- TAP connector Device 1 (DB9 female): Connect to RS232 high speed adapter (e.g.  FTDI UT232R-200) on " & generatorPort
+DL.AddComment "- TAP connector Device 2 (DB9 male): loopback connector: TX->RX ; RTS->CTS+RI ; DTR->DCD+DSR"
+DL.AddComment "- Tap Pro/485 should appear as VTP0/VTP1 in Docklight. Tap Std should appear as TAP1/TAP2 (first FDTI index is already taken by the FTDI UT232R-200)"
+
+Do
+    DL.AddComment "Checking RS232 adapter..."
+    generatorOK = False
+    Do
+        DL.Pause 100
+        generatorOK = testGeneratorPort()
+    Loop Until generatorOK
+    DL.AddComment "Ready to test"
+
+    Do
+        unitOk = True
+        DL.AddComment
+        DL.AddComment
+        DL.AddComment "Please connect new TAP device"
+        generatorOK = waitForNewDevice(False)
+        If Not generatorOK Then
+            DL.AddComment "TEST ENV ERROR: RS232 adapter not working"
+        Else
+            DL.AddComment "Device connected, starting test at " & DL.GetDocklightTimeStamp()
+            DL.AddComment "Passive/electrical testing..."
+            If testContacts() Then
+                DL.AddComment "passive/electrical ok, (handshake signals and TX/RX ok)"
+            Else
+                unitOk = False
+                DL.AddComment "ERROR: TAP fault. Not all 9 pins wired correctly"
+            End If
+        End If
+        isProTap = False
+        tapDetected = False
+        If unitOk Then
+            DL.AddComment "Waiting for driver installed & tap successfully opened (max 2 minutes)..."
+            connectCount = 0
+            Do
+                tapType = checkTapType()
+                If tapType > 0 Then
+                    isProTap = (tapType = 2)
+                    tapDetected = True
+                Else
+                    connectCount = connectCount + 1
+                    If connectCount < 12 Then
+                        DL.Pause 10000
+                    Else
+                        ' give up
+                        unitOk = False
+                    End If
+                End If
+            Loop Until tapDetected Or Not unitOk
+        End If
+        If unitOk Then
+            DL.AddComment "Functional testing..."
+            If openTap(True, False) Then
+                isProTap = True
+                DL.AddComment "Detected TAP PRO / TAP 485"
+            ElseIf openTap(False, False) Then
+                isProTap = False
+                DL.AddComment "Detected TAP (Standard)"
+            Else
+                unitOk = False
+                DL.AddComment "ERROR: Could not detect TAP or TAP PRO / TAP 485"
+            End If
+        End If
+        If unitOk Then
+            DL.AddComment "Testing serial data monitoring"
+            If testDataMonitoring(isProTap) Then
+                DL.AddComment "Data monitoring ok"
+            Else
+                unitOk = False
+                DL.AddComment "ERROR: Tap data monitoring"
+            End If
+        End If
+        If unitOk And isProTap Then
+            DL.AddComment "Testing signal monitoring"
+            If testSignalMonitoring() Then
+                DL.AddComment "Handshake signal monitoring ok"
+            Else
+                unitOk = False
+                DL.AddComment "ERROR: Handshake signal monitoring"
+            End If
+        End If
+        DL.AddComment "Please disconnect TAP device"
+        tapName = "TAP"
+        If isProTap Then tapName = "TAP PRO/485"
+        If unitOk Then
+            DL.AddComment "PASS +++++ " & tapName & " passed unit testing on " & DL.GetDocklightTimeStamp()
+        Else
+            DL.AddComment "FAIL !!!!! " & tapName & " passed unit testing on " & DL.GetDocklightTimeStamp()
+        End If
+        generatorOK = waitForNewDevice(True)
+    Loop Until Not generatorOK
+Loop
+
+Function waitForNewDevice(disconnect)
+    ' make sure the generator port is still there
+    waitForNewDevice = testGeneratorPort()
+    If Not waitForNewDevice Then Exit Function
+    DL.SetHandshakeSignals False, False
+    DL.StartCommunication
+    DL.SetHandshakeSignals True, True
+    connectCount = 0
+    oldHandshake = -1
+    Do
+        DL.Pause 20
+        ' debouncing / allow for some shaky hands when connecting a new unit
+        If (DL.GetHandshakeSignals() = oldHandshake) And ((oldHandshake > 0) Xor disconnect) Then
+            connectCount = connectCount + 1
+        Else
+            connectCount = 0
+            oldHandshake = DL.GetHandshakeSignals()
+        End If
+    Loop Until connectCount > 50
+End Function
+
+Function testContacts()
+    ' test TAP passive electrical, only via RS232 adapter: feedback for all signals correct? data loopback ok?
+    DL.StartCommunication
+    DL.SetHandshakeSignals False, False
+    DL.Pause 20
+    contacts = DL.GetHandshakeSignals()
+    If (contacts <> 0) Then
+        DL.AddComment "ERROR: GetHandshakeSignals expected 0, is: " & contacts
+        DL.Pause 10000
+        Exit Function
+    End If
+    DL.SetHandshakeSignals True, False
+    DL.Pause 20
+    contacts = DL.GetHandshakeSignals()
+    If (contacts <> 9) Then
+        DL.AddComment "ERROR: GetHandshakeSignals expected 9 (CTS+RI), is: " & contacts
+        Exit Function
+    End If
+    DL.SetHandshakeSignals False, True
+    DL.Pause 20
+    contacts = DL.GetHandshakeSignals()
+    If (contacts <> 6) Then
+        DL.AddComment "ERROR: GetHandshakeSignals expected 6 (DSR+DCD), is: " & contacts
+        Exit Function
+    End If
+    DL.SetHandshakeSignals True, True
+    DL.ResetReceiveCounter
+    sendTestData False
+    If DL.WaitForSequence("Test", 1, 1000) = 0 Then
+        DL.AddComment "ERROR: TX test data was not received on RX"
+        Exit Function
+    End If
+    testContacts = True
+End Function
+    
+Function checkTapType()
+    ' find our tap and detect if it's "TAP PRO" or standard
+    tapType = 0
+    If openTap(True, False) Then
+        tapType = 2
+    ElseIf openTap(False, False) Then
+        tapType = 1
+    End If
+    checkTapType = tapType
+End Function
+
+Function openTap(useProTap, useHighspeed)
+    DL.CloseSideChannel (3)
+    DL.StopCommunication
+    If useProTap Then
+        DL.OpenProject "TapProductionTesting_VTP.ptp"
+    Else
+        DL.OpenProject "TapProductionTesting_TAP.ptp"
+    End If
+    ' set and check availability of the TAP monitoring unit
+    channel1Str = Left(DL.GetChannelSettings(1), 5)
+    channel2Str = Left(DL.GetChannelSettings(2), 5)
+    success = DL.SetChannelSettings(channel1Str + getSettingsStr(useProTap, useHighspeed))
+    If success Then
+        success = DL.SetChannelSettings(channel2Str + getSettingsStr(useProTap, useHighspeed))
+    End If
+    If success Then
+        DL.StartCommunication
+    End If
+    openTap = success
+End Function
+
+Function testDataMonitoring(useProTap)
+    ' The RS232 adapter is a Docklight "side channel" to inject one-character RS232 data
+    testDataMonitor = False
+    If Not openTap(useProTap, False) Then Exit Function
+    If Not DL.OpenSideChannel(generatorPort + ":" + getSettingsStr(useProTap, False)) Then Exit Function
+    DL.ResetReceiveCounter
+    sendTestData True
+    ' this is one character we get back exactly three times
+    ' - from the RS232 adapter / side channel as <Channel3>D</Channel3>
+    ' - from the two data tap directions
+    ' (since the <Channel3>.. fragment blends into the <VTP1> data stream, we could not realiably detect a whole
+    ' data packet on all three channels. But one character is all we need.)
+    If DL.WaitForSequence("Test", 3, 1000) < 3 Then
+        DL.AddComment "Data not received at " + getSettingsStr(useProTap, False)
+        Exit Function
+    End If
+    If Not openTap(useProTap, True) Then Exit Function
+    If Not DL.OpenSideChannel(generatorPort + ":" + getSettingsStr(useProTap, True)) Then Exit Function
+    DL.ResetReceiveCounter
+    sendTestData True
+    If DL.WaitForSequence("Test", 3, 1000) < 3 Then
+        DL.AddComment "Data not received at " + getSettingsStr(useProTap, True)
+        Exit Function
+    End If
+    testDataMonitoring = True
+End Function
+
+Function testSignalMonitoring()
+    ' for TAP PRO / 485 only
+    ' The RS232 adapter is a Docklight "side channel" to inject a RTS=high change
+    ' (DTR=high not possible with this simplified approach)
+    testSignalMonitoring = False
+    If Not openTap(True, False) Then Exit Function
+    If Not DL.OpenSideChannel(generatorPort + ":" + getSettingsStr(useProTap, False) + ",RTSSEND") Then Exit Function
+    DL.ResetReceiveCounter
+    sendTestData True ' since we use "RTSSEND", this will set RTS temporarily to high
+    If DL.WaitForSequence("CTS+RI+RTS=High", 1, 1000) = 0 Then
+        DL.AddComment "ERROR: CTS+RI+RTS=High not detected"
+        Exit Function
+    End If
+    
+    ' (monitoring for DSR+DCD+DTR would require to launch a second Docklight instance. For simplicity of this script, not implemented yet.
+    testSignalMonitoring = True
+End Function
+
+Function testGeneratorPort()
+    DL.CloseSideChannel (3)
+    DL.StopCommunication
+    DL.OpenProject "TapProductionTesting.ptp"
+    genPortSettings = generatorPort
+    success = DL.SetChannelSettings(genPortSettings) ' adjust COM port but don't touch other settings
+    If success Then
+        DL.StartCommunication
+    End If
+    testGeneratorPort = success
+End Function
+
+Sub sendTestData(sendAsSideChannel)
+    ' for consistency: we don't have to guess what is defined as actual Receive Sequence.
+    ' just read from the project data
+    testDataHex = Trim(Split(DL.GetEnvironment("DOCKLIGHT_RECEIVESEQDEF:Test"), vbCrLf)(1))
+    If sendAsSideChannel Then
+        DL.DirectSend 3, testDataHex, "H"
+    Else
+        DL.DirectSend 1, testDataHex, "H"
+    End If
+End Sub
+
+Function getSettingsStr(useProTap, useHighspeed)
+    settStr = serialStd
+    If useHighspeed Then
+        If useProTap Then
+            settStr = serialHighspeedPro
+        Else
+            settStr = serialHighspeedTap
+        End If
+    End If
+    getSettingsStr = settStr
+End Function
+

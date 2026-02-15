@@ -1,0 +1,10 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 Docklight Sample Project "AcknowledgeDeviceSimulator.ptp"
+\par Date: 2005-04-27
+\par Author: Heggelbacher
+\par 
+\par This is a simple simulator for a device that sends out an "acknowledge" after receiving a new message. It can be used to test the Docklight sample script "AcknowledgeTest.pts". 
+\par 
+\par \cf0\fs19 
+\par }

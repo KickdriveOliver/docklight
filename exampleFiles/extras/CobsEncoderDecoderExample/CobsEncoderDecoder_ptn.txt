@@ -1,0 +1,88 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fmodern\fprq1\fcharset0 Consolas;}{\f3\fswiss\fprq2\fcharset0 Calibri;}{\f4\fmodern\fprq1\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue0;\red4\green129\blue6;\red37\green0\blue167;\red208\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf2\f2\fs20 
+\par \cf1\lang1033\b\f3 Example project: Consistent Overhead Byte Stuffing (COBS)
+\par \b0 O.Heggelbacher / 2022-01-26
+\par 
+\par This project demostrates how to use a Docklight script to COBS-encode Send Sequence data before transmission. And receive COBS packets back with a Receive Sequence and decode them using a corresponding decoder script. 
+\par 
+\par The script uses the \b _auto.pts \b0 feature so the encoder/decoder script is automatically started when you start communication / send data. See the Docklight User Manual at  https://docklight.de/manual/index.html?saving-and-loading-your-script.htm 
+\par 
+\par For easy testing without external devides, the project's communication settings are \b UDP:LOCALHOST:10001\b0 , which is basically a loopback where all TX data is received back immediately on the RX channel. 
+\par 
+\par The example Send Sequences are taken from the Wikipedia on COBS.  
+\par \f4 https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing\cf2\f2 
+\par \cf1\f4 
+\par You  can test the project by clicking on one of the Example.. Send Sequences, and Docklight will send the COBS encoded packet and receive/decode it back, e.g Example05: 
+\par 
+\par \cf2\f2  ==========================
+\par  Original data:
+\par  11 00 00 00
+\par  COBS-encoded transmission data:
+\par 
+\par 24.01.2022 12:14:34.623 [TX] - \cf3 02 11 01 01 01 00 \cf2 
+\par 24.01.2022 12:14:34.623 [RX] - \cf4 02 11 01 01 01 00 \cf2  
+\par  COBS decoded data: 
+\par  \lang1031 11 00 00 00 
+\par \cf1\f0 
+\par \pard\cf0\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=Example01
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Example02
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=Example03
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=Example04
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=Example05
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 5    NAME=Example06
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 6    NAME=Example07
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 7    NAME=Example08
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 8    NAME=Example09
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 9    NAME=Example10
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f0\fs20 Example project: Consistent Overhead Byte Stuffing (COBS) 
+\par Author: Heggelbacher 
+\par Date: 2022-01-24
+\par 
+\par This project demonstrates how to encode and decode COBS packets.
+\par 
+\par The Docklight script file uses the "_auto.pts" feature that starts the encoder/decoder script automatically with the communication, see the Docklight User Manual at 
+\par https://docklight.de/manual/index.html?saving-and-loading-your-script.htm
+\par 
+\par The Send Sequence examples are the Encoding examples at 
+\par https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing
+\par 
+\par You can 
+\par \cf0\f1\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=CobsTelegram
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par }

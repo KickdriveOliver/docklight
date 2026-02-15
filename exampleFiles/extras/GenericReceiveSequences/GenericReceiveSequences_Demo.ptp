@@ -1,0 +1,74 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+UDP:LOCALHOST:10001
+COM2
+115200
+0
+63
+4
+2
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+1
+31
+0
+5
+
+SEND
+1
+HelloWorld
+48 65 6C 6C 6F 20 57 6F 72 6C 64 21 0D
+0
+5
+
+RECEIVE
+0
+AnyCharacter
+??
+-1
+1
+COMMENT [AnyCharacter triggered: %_A]
+0
+1
+0
+0
+
+RECEIVE
+1
+AnyTelegramWithPause
+?? ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## && 01
+-1
+1
+COMMENT [AnyTelegram triggered: %_H]
+0
+1
+0
+0
+
+RECEIVE
+2
+AnyLineWithCR
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 0D
+-1
+1
+COMMENT [AnyLine triggered: %_A]
+0
+1
+0
+0
+

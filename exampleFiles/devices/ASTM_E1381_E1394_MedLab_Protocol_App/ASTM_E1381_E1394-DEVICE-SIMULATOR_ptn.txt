@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\cf1\f2\fs20 ASTM medical protocol - simulate a device that receives or transfers data
+\par Date: 2020-04-14
+\par Author: Heggelbacher
+\par \f0 
+\par \f2 PLEASE NOTE: This is a only partially tested example / proof of concept for ASTM E1384 based data exchange between Docklight and medical equipment, e.g. a blood sample analyzer. It is the user's responsibility to evaluate the usefulness and accuracy of any part of this example. THIS EXAMPLE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. \cf0\f3\fs23 
+\par \pard\f1\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=ENQ
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=Data Line
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=EOT
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=ACK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=NAK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=ACK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=EOT
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=ENQ
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=FrameETX Checksum OK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=FrameETX Checksum Wrong
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=FrameETB Checksum OK
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 6    NAME=FrameETB Checksum Wrong
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \pard\fs19 
+\par }

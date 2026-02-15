@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red0\green0\blue255;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 Docklight Sample Script "AcknowledgeTest.pts" (+ project file "AcknowledgeTestPrj.ptp") 
+\par Date: 2005-04-27
+\par Author: Heggelbacher
+\par 
+\par Getting started:
+\par - Open the Docklight Script file "AcknowledgeTest.pts" using the menu "Scripting-->Open Script..."
+\par - Choose a different COM port, if necessary (double click on the COM1 status tab)
+\par - Connect a device to test (or use a second Docklight application and the "AcknowledgeDeviceSimulator.ptp" project
+\par - Start the script using Shift+F5
+\par - Manually send out the Test command
+\par 
+\par Docklight now waits for an Acknowledge sequence "ACK<CR><LF>" from the device. If no ACK is received within one second, a timeout error occurs and the script execution is stopped. 
+\par 
+\par Sample log for a device that correctly responds with "ACK<CR><LF>":
+\par \cf2\f1\fs19 
+\par 27.04.2005 18:44:11.49 [TX] - \cf3 Test\cf2 <CR><LF>
+\par 
+\par 27.04.2005 18:44:11.58 [RX] - \cf4 ACK\cf2 <CR><LF>
+\par 
+\par 27.04.2005 18:44:13.80 [TX] - \cf3 Test\cf2 <CR><LF>
+\par 
+\par 27.04.2005 18:44:13.90 [RX] - \cf4 ACK\cf2 <CR><LF>
+\par \cf1\f0\fs20 
+\par Sample log for a device that does not respond:
+\par \cf2\f1\fs19 
+\par 27.04.2005 18:44:22.07 [TX] - \cf3 Test\cf2 <CR><LF>
+\par  
+\par  ACKNOWLEDGE TIMEOUT. TEST STOPPED
+\par  
+\par \cf0\f0 
+\par }

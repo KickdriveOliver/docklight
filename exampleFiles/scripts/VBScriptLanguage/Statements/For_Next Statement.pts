@@ -1,0 +1,13 @@
+DL_SCRIPTVERSION
+1
+46127
+
+'Example For..Next Statement
+
+For I = 1 To 5
+      For J = 1 To 4
+            For K = 1 To 3
+            	DL.AddComment I & " " & J & " " & K
+            Next
+      Next
+Next

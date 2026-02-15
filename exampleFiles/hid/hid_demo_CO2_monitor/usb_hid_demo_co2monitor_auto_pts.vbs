@@ -1,0 +1,130 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: usb_hid_demo_co2monitor_auto.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 48607
+
+' usb_hid_demo_comonitor example	
+
+CO2METER_CO2 = &h50
+CO2METER_TEMP = &h42
+CO2METER_HUM = &h41
+
+CO2_LIMIT_YELLOW = 800
+CO2_LIMIT_RED = 1200
+
+DL.SetUserOutput "" ' clear output
+rtfTemplateGreen = LoadFromFile("air_quality_template_green.rtf")
+rtfTemplateYellow = LoadFromFile("air_quality_template_yellow.rtf")
+rtfTemplateRed = LoadFromFile("air_quality_template_red.rtf")
+
+temp = "-" 
+co2 = "-"
+hum = "-"
+
+SetOutput
+DL.SendSequence "zytemp-send-feature"
+Do
+	DL.Pause 1
+Loop
+
+Function LoadFromFile(myFile) 
+	txt = ""
+	FileInput.OpenFile myFile
+	Do Until FileInput.EndOfFile
+		txt = txt & FileInput.GetLine()
+	Loop
+	FileInput.CloseFile
+	LoadFromFile = txt
+End Function
+
+Sub SetOutput()
+    outStr = rtfTemplateGreen
+	If IsNumeric(co2) Then 
+		If (CInt(co2) >= CO2_LIMIT_RED) Then 
+			outStr = rtfTemplateRed
+		ElseIf (CInt(co2) > CO2_LIMIT_YELLOW) Then 
+			outStr = rtfTemplateYellow
+		End If
+	End If
+	outStr = Replace(outStr, "_TEMP_", temp)
+	outStr = Replace(outStr, "_CO2_", co2)
+	outStr = Replace(outStr, "_HUM_", hum)
+	DL.SetUserOutput outStr, True, False
+End Sub
+
+Sub DL_OnReceive()
+    If DL.OnReceive_GetName() = "zytemp-telegram" Then 
+        DL.AddComment "new telegram"
+		sensor = DL.OnReceive_Peek(1) 
+		value = DL.ConvertSequenceData("toInteger16", DL.OnReceive_GetData("H", 2, 2), "H", True)
+		Select Case sensor:
+			Case CO2METER_CO2:
+				co2 = FormatNumber(ConvertValue(sensor, value), 0)
+                DL.AddComment "new co2 value = " & co2
+			Case CO2METER_TEMP:
+				temp = FormatNumber(ConvertValue(sensor, value), 1)
+                DL.AddComment "new temp value = " & temp
+			Case COMETER_HUM:
+				hum = FormatNumber(ConvertValue(sensor, value), 0)
+                DL.AddComment "new hum value = " & hum
+		End Select
+		SetOutput
+	End If
+End Sub
+
+
+' Code from Python example, auto-converted to Docklight Script using the Docklight Bot
+' Original repository https://github.com/heinemml/CO2Meter
+' MIT License
+' Copyright (c) 2017 Michael Heinemann
+
+Function ConvertValue(sensor, value)
+    ' Apply Conversion of value depending on sensor type
+    If sensor = CO2METER_TEMP Then
+        ConvertValue = Round(value / 16.0 - 273.1, 1)
+    ElseIf sensor = CO2METER_HUM Then
+        ConvertValue = Round(value / 100.0, 1)
+    Else
+        ConvertValue = value
+    End If
+End Function
+
+' (decrypt from the original code is currently unused. Current devices do not seem to use this.)
+
+Function Decrypt(key, data)
+    Dim cstate, shuffle, phase1, phase2, phase3, ctmp, out
+    Dim i, o
+    
+    cstate = Array(&H48, &H74, &H65, &H6D, &H70, &H39, &H39, &H65)
+    shuffle = Array(2, 4, 0, 7, 1, 6, 5, 3)
+    
+    ReDim phase1(7)
+    For i = 0 To 7
+        o = shuffle(i)
+        phase1(o) = data(i)
+    Next
+    
+    ReDim phase2(7)
+    For i = 0 To 7
+        phase2(i) = phase1(i) Xor key(i)
+    Next
+    
+    ReDim phase3(7)
+    For i = 0 To 7
+        phase3(i) = ((phase2(i) \ 8) Or (phase2((i - 1 + 8) Mod 8) * 32)) And &HFF
+    Next
+    
+    ReDim ctmp(7)
+    For i = 0 To 7
+        ctmp(i) = ((cstate(i) \ 16) Or (cstate(i) * 16)) And &HFF
+    Next
+    
+    ReDim out(7)
+    For i = 0 To 7
+        out(i) = (&H100 + phase3(i) - ctmp(i)) And &HFF
+    Next
+    
+    Decrypt = out
+End Function

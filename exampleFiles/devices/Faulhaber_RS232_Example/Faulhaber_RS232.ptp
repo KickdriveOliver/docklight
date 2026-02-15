@@ -1,0 +1,374 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+TAP2
+9600
+2
+0
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+   BASIC SETTINGS :
+
+0
+5
+
+SEND
+1
+Load Encoder Resolution
+45 4E 43 52 45 53 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+2
+Analog Direction Left
+41 44 4C 0D
+0
+5
+
+SEND
+3
+Analog Direction Right
+41 44 52 0D
+0
+5
+
+SEND
+4
+Answer Mode
+41 4E 53 57 ?? 0D
+0
+5
+
+SEND
+5
+   GENERAL PARAMETERS :
+
+0
+5
+
+SEND
+6
+Load Position Range Limits
+4C 4C ?? ## ## ## ## 0D
+0
+5
+
+SEND
+7
+Load Maximum Speed
+53 50 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+8
+Load Command Acceleration
+41 43 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+9
+Load Command Deceleration
+44 45 43 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+10
+Load Peak Current Limit
+4C 50 43 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+11
+Load Continuous Current Limit
+4C 50 43 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+12
+Load Corridor
+43 4F 52 52 49 44 4F 52 ?? ## ## ## ## 0D
+0
+5
+
+SEND
+13
+   CONFIGURATION OF HOMING, LIMIT SWITCHES :
+
+0
+5
+
+SEND
+14
+Hard Notify
+48 4E ?? ## 0D
+0
+5
+
+SEND
+15
+Hard Blocking
+48 42 ?? ## 0D
+0
+5
+
+SEND
+16
+   MISCELLANEOUS COMMANDS :
+
+0
+5
+
+SEND
+17
+Notify Error
+4E 45 20 ?? 0D
+0
+5
+
+SEND
+18
+Save Parameters
+53 41 56 45 0D
+0
+5
+
+SEND
+19
+Save Parameters2
+45 45 50 53 41 56 0D
+0
+5
+
+SEND
+20
+   MOTION CONTROL COMMANDS :
+
+0
+5
+
+SEND
+21
+Disable Drive
+44 49 0D
+0
+5
+
+SEND
+22
+Enable Drive
+45 4E 0D
+0
+5
+
+SEND
+23
+Initiate Motion 
+4D 0D
+0
+5
+
+SEND
+24
+Load Absolute Position
+4C 41 ?? ## ## ## ## ## ## ## ## ## ## 0D
+0
+5
+
+SEND
+25
+Load Relative Position
+4C 52 ?? ## ## ## ## ## ## 0D
+0
+5
+
+SEND
+26
+Notify Position
+4E 50 0D
+0
+5
+
+SEND
+27
+Notify Position Off
+4E 50 4F 46 46 0D
+0
+5
+
+SEND
+28
+Select Velocity Mode
+56 ?? ## ## ## ## ## 0D
+0
+5
+
+SEND
+29
+Go Homing Sequence
+47 4F 48 4F 53 45 51 0D
+0
+5
+
+SEND
+30
+Define Home Position
+48 4F 20 ## ## ## 0D
+0
+5
+
+SEND
+31
+   GENERAL QUERY COMMANDS :
+
+0
+5
+
+SEND
+32
+Get Current Position
+50 4F 53 0D
+0
+5
+
+SEND
+33
+Get Target Position
+54 50 4F 53 0D
+0
+5
+
+SEND
+34
+Operation Status
+4F 53 54 0D
+0
+5
+
+SEND
+35
+   SPECIAL FAULT OUTPUT FUNCTIONS :
+
+0
+5
+
+SEND
+36
+Clear Output
+43 4F 0D
+0
+5
+
+SEND
+37
+Set Output
+53 4F 0D
+0
+5
+
+RECEIVE
+0
+OK received
+4F 4B 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+1
+Analogue In
+68 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+2
+Fault Signal
+66 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+3
+Input 3
+74 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+4
+Input 4
+77 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+5
+Input 5
+78 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+6
+Position notified
+70 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+

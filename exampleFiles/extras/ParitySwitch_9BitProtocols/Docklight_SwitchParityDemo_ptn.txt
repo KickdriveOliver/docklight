@@ -1,0 +1,36 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fswiss Arial;}{\f2\fswiss\fcharset0 Arial;}{\f3\fnil\fcharset0 Courier;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red255\green0\blue0;}
+\viewkind4\uc1\pard\cf1\fs20 Docklight_SwitchParityDemo.ptp
+\par Author: Heggelbacher
+\par Date: 2007-04-21
+\par Applies To: Docklight Scripting V1.7 
+\par 
+\par This project demonstrates how to switch the parity settings temporarily within one Send Sequence. This is useful for protocol that require a 9th data bit, e.g. for device addressing on a bus. 
+\par 
+\par The parity can be switched using the "!" function character (set RTS and DTR signal, F11). See the manual at
+\par http://www.docklight.de/manual/changingthertsdtrsignalsw.htm
+\par 
+\par Use the following character values (Decimal Mode) for changing the parity:
+\par 16 = No parity
+\par 32 = Odd parity
+\par 48 = Even parity
+\par 64 = \lang1031\f1 Mark. Set parity bit to logic '1'
+\par \lang1033\f0 80 = \cf0\lang1031\f1 Space. Set parity bit to logic '0'\cf1\lang1033\f0 
+\par 
+\par The new parity settings are applied starting with the next regular character, both on the TX and the RX side. The parity is switched back to the original setting after the Send Sequence has been transmitted completely. 
+\par \lang1031\f1 
+\par NOTE: The most useful parameters for this function character are the "Mark" and "Space" settings, because they allow you to set the parity bit to a defined value that effectively serves as a 9th data bit.
+\par 
+\par NOTE: It is recommended to \f2 change the project setting for\f1  \f2 "\cf0\lang1033\f0\fs20 Parity Error Character" \cf1\lang1031\f1\fs20 to "(ignore)", so you can \f2 evaluate incoming data in both cases, 9\f1 th bit = high and 9th bit = low.\lang1033\f0 
+\par 
+\par Example
+\par 
+\par Sending the "Switch Parity" sequence. Communication Window output in a second Docklight application, with project settings "9600, Space, 8, 1" and Parity Error Character '?':\cf2\f3 
+\par 
+\par 15.04.2007 14:00:59.40 [RX] - \cf3 O?? ?a???y ?V?N?P?rit??????????????SPACE Parity\cf2 <CR><LF>
+\par \cf1\f0 
+\par After changing the Parity Error Character to "(ignore)" in the second Docklight:
+\par 
+\par  \cf2\f3 15.04.2007 14:03:00.56 [RX] - \cf3 ODD Parity EVEN Parity MARK Parity SPACE Parity\cf2 <CR><LF>\cf1\f0 
+\par 
+\par }

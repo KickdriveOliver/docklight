@@ -1,0 +1,10 @@
+DL_SCRIPTVERSION
+1
+20164
+
+'Example Oct Function 
+
+Dim MyOct
+MyOct = Oct(4)     ' Returns 4.
+MyOct = Oct(8)     ' Returns 10.
+MyOct = Oct(459)   ' Returns 713.

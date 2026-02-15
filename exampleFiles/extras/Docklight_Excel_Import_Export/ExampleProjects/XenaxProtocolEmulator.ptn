@@ -1,0 +1,364 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Consolas;}{\f2\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue255;}
+\viewkind4\uc1\pard\cf1\f0\fs20 
+\par \ul |~~~~ DOCKLIGHT PROJECT DOCUMENTATION
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par \cf1\f2\fs20 XenaxProtocolEmulator.ptp / XenaxProtocolEmulator_auto.pts
+\par Date: 2021-02-18
+\par Author: Heggelbacher 
+\par 
+\par - Provides a limited emulation of the JennyScience XENAX TCP Server on port 10001 and the ASCII protocol as documented in the XENAX Xvi75 User Manual. Only a subset of commands is supported. 
+\par 
+\par - The emulation supports all commands used in the \b XenaxDocklightDemo1_Polling.pts \b0 application example. To use this emulator as a target for the XenaxDocklightDemo1_Polling.pts application example, you need to change the Send/Receive channel in XenaxDocklighDemo.ptp from 192.168.2.100:10001 to \b LOCALHOST:10001 \b0 . 
+\par 
+\par - The answers may not accurately represent the state of a XENAX controller, but they are syntaxtically correct.
+\par 
+\par - \b REF\b0  and \b EVT1\b0  support basic events (\b @S0\b0 , \b @H0\b0 , ...) as a syntax example, but not as an actual representation of a XENAX controller status. 
+\par 
+\par - The accompanying \b XenaxProtocolEmulator_auto.pts \b0 enables basic support for commands with arguments (e.g. "G10000") and ensures the answer contains the same parameter value. E.g. 
+\par 
+\par \cf2\f1 13.03.2019 13:49:52.108         [Client] - \cf3 G28000\cf2 <CR>\cf0 
+\par \cf2 
+\par 13.03.2019 13:49:52.117 [XENAX Emulator] - \cf4 G28000\cf2 <CR><LF>\cf4 
+\par >\cf1\f2 
+\par 
+\par \cf2\f1 13.03.2019 13:49:52.365         [Client] - \cf3 G1000\cf2 <CR>\cf0 
+\par \cf2 
+\par 13.03.2019 13:49:52.379 [XENAX Emulator] - \cf4 G1000\cf2 <CR><LF>\cf4 
+\par >\cf1\f2 
+\par \cf0\f1\fs19 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 0    NAME=EVT1<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 1    NAME=REF<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 2    NAME=VER<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 3    NAME=VERB<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 4    NAME=TE<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 5    NAME=TES<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 6    NAME=TMT<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 7    NAME=TT<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 8    NAME=TS<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 9    NAME=IFA<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 10    NAME=TEB<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 11    NAME=TPSR<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 12    NAME=TP<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 13    NAME=PQ<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 14    NAME=EVT0<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 15    NAME=SP200000<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 16    NAME=AC1000000<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 17    NAME=G80000<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 18    NAME=CCM0<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 19    NAME=CCM1<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 20    NAME=CRD44000<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 21    NAME=PWC<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 22    NAME=JN<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 23    NAME=SM<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 24    NAME=JP<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 25    NAME=Prompt
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 26    NAME=MD<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 27    NAME=FCT0<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 28    NAME=SLPN50000
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 29    NAME=SLPP50000
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 30    NAME=TIX<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 31    NAME=TOX<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 32    NAME=TV<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT SEND SEQUENCE INDEX= 33    NAME=TMC<CR><LF>
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 0    NAME=EVT1 requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 1    NAME=REF requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 2    NAME=TS requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 3    NAME=TP requested
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 4    NAME=PWC requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 5    NAME=PQ requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 6    NAME=EVT0 requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 7    NAME=SP requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 8    NAME=AC requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 9    NAME=SLPN requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 10    NAME=G requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 11    NAME=JP requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 12    NAME=JN requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 13    NAME=SM requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 14    NAME=CCM0 requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 15    NAME=CCM1 requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 16    NAME=CRD requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 17    NAME=TE requested
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 18    NAME=TES requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 19    NAME=VER requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 20    NAME=VERB requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 21    NAME=TPSR requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 22    NAME=TT requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 23    NAME=TMT requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 24    NAME=TEB requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 25    NAME=IFA requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 26    NAME=Single CR
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 27    NAME=MD requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 28    NAME=FCT requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 29    NAME=SLPP requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 30    NAME=SLPN requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 31    NAME=TIX requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 32    NAME=TOX requested
+\par \cf0\ulnone\f1\fs19 
+\par \pard\fs19 
+\par 
+\par \pard\fs19 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 33    NAME=TV requested
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par \cf1\ul\f0\fs20 |~~~~ DOCKLIGHT RECEIVE SEQUENCE INDEX= 34    NAME=IFA requested
+\par \cf0\ulnone\f1\fs19 
+\par 
+\par }
+ 

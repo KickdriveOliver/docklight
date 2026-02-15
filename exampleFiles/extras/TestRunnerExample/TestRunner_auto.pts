@@ -1,0 +1,99 @@
+DL_SCRIPTVERSION
+1
+8539
+
+Const VK_RETURN = &h0D
+const CMD_TIMEOUT = 3000 ' 3 seconds default timeout
+
+DL.ClearCommWindows
+
+DL.AddComment "Opening the Simulator.ptp test candidate in a second Docklight instance, using DL.ShellRun ..."
+DL.ShellRun "open", "TestRunner_SIMULATOR.ptp"
+
+DL.AddComment
+DL.AddComment "Please go to the second Docklight with the 'Simulator.ptp' project and"
+DL.Addcomment "* Start communication (press F5)."
+DL.Pause 2000
+DL.AddComment "Did you start it? Ready for the the test run? --> Press ENTER to continue"
+Do 
+	DL.Pause 1
+Loop Until (DL.GetKeyState(VK_RETURN) And 128)
+DL.AddComment
+
+FileInput.OpenFile "CommandList.csv"
+DL.AddComment "Running the tests defined in 'CommandList.csv'..."
+
+testCase = ""
+cmd = ""
+receivedAnswer = ""
+failedTests = ""
+failedCount = 0
+passedTests = ""
+passedCount = 0
+Do Until FileInput.EndOfFile
+	nextLine = Trim(FileInput.GetLine())
+	If Instr(nextLine, ";") > 0 Then 
+		splitLine = Split(nextLine, ";")
+		If splitLine(0) <> "" Then testCase = splitLine(0)
+		If UBound(splitLine) = 2 Then
+			' contains three columns, must be a new telegram to test
+			cmd = splitLine(1)
+			expectedAnswer = splitLine(2)
+			testSpec = testCase & ";" & cmd & ";" & expectedAnswer	
+		 DL.AddComment "Next test: " & testSpec
+		 thisResult = ""
+			DL.ResetReceiveCounter
+			receivedAnswer = ""
+			DL.SendSequence "", cmd + Chr(13)
+			Do 
+				found = DL.WaitForSequence("Telegram", 1, CMD_TIMEOUT)
+			Loop While (found And receivedAnswer = "") ' skip all empty answers
+			If receivedAnswer = expectedAnswer Then
+				passedCount = passedCount + 1
+			 thisResult = " - passed"
+				passedTests = passedTests & testSpec & thisResult & vbCrLf
+			Else
+				failedCount = failedCount + 1
+				failedTests = failedTests & testSpec
+				If found = 0 Then
+			  thisResult = " - failed, timeout"
+				Else
+					thisResult = " - failed, received wrong answer: " & ">" & receivedAnswer & "<"
+				End If
+				failedTests = failedTests & thisResult & vbCrLf
+			End If
+		 DL.AddComment "Result: " & testSpec & thisResult 
+		 DL.AddComment
+		End If
+	End If
+Loop
+FileInput.CloseFile
+
+FileOutput.CreateFile "results.txt"
+If failedCount > 0 Then 
+	FileOutput.WriteLine "FAILED"
+	FileOutput.WriteLine "FAILED TESTS:"
+	FileOutput.WriteLine failedTests, False
+Else
+	FileOutput.WriteLine "PASSED"
+End If
+FileOutput.WriteLine "PASSED TESTS:"
+FileOutput.WriteLine passedTests, False
+
+DL.AddComment "Test results"
+DL.AddComment "================================="
+DL.AddComment "Passed = " & passedCount
+DL.AddComment "Failed = " & failedCount
+
+Sub DL_OnReceive()
+    ' only the first non-empty answer counts
+    If DL.OnReceive_GetName() = "Telegram" And receivedAnswer = "" Then
+        ' store the received answer, but not the terminating <CR>
+        receivedAnswer = DL.OnReceive_GetData("A", 1, -2)
+	 ' ignore all extra LF
+        receivedAnswer = Replace(receivedAnswer, "<LF>", "")
+ 	 ' ignore answers that are just repetitions of the question
+        If receivedAnswer = cmd Then receivedAnswer = ""
+    End If
+End Sub
+

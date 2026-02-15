@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+50598
+
+'Example Round
+
+Dim MyVar, pi
+pi = 3.14159
+MyVar = Round(pi, 2) ' MyVar contains 3.14.

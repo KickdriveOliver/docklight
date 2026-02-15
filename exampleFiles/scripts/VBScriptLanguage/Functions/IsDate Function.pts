@@ -1,0 +1,12 @@
+DL_SCRIPTVERSION
+1
+40557
+
+'Example IsDate
+
+
+Dim MyDate, YourDate, NoDate, MyCheck
+MyDate = "October 19, 1962": YourDate = #10/19/62#: NoDate = "Hello"
+MyCheck = IsDate(MyDate)   ' Returns True.
+MyCheck = IsDate(YourDate)   ' Returns True.
+MyCheck = IsDate(NoDate)   ' Returns False.

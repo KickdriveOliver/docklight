@@ -1,0 +1,70 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM21
+TAP1
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+SEND
+0
+LED ON
+6F 6E 0D 0A
+0
+5
+
+SEND
+1
+LED OFF
+6F 66 66 0D 0A
+0
+5
+
+RECEIVE
+0
+LED is on received
+4C 45 44 20 69 73 20 6F 6E 0D 0A
+-1
+1
+COMMENT Arduino reports: LED on
+0
+1
+0
+0
+
+RECEIVE
+1
+LED is off received
+4C 45 44 20 69 73 20 6F 66 66 0D 0A
+-1
+1
+COMMENT Arduino reports: LED off
+0
+1
+0
+0
+
+RECEIVE
+2
+Arduino reset
+52 65 61 64 79 0D 0A
+-1
+1
+COMMENT Arduino communication established
+0
+1
+0
+0
+

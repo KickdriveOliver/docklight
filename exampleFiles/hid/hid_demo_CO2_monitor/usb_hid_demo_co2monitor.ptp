@@ -1,0 +1,46 @@
+VERSION
+9
+
+COMMSETTINGS
+0
+USBHID:4D9:A052:I
+COM2
+57600
+0
+63
+4
+2
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+zytemp-send-feature
+FE 00 00 00 00 00 00 00 00 00
+0
+5
+CHECKSUM 
+
+RECEIVE
+0
+zytemp-telegram
+?? ?? ?? ?? 0D 00 00 00
+-1
+1
+COMMENT 
+0
+1
+0
+0
+CHECKSUM MOD256 @4
+0
+

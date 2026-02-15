@@ -1,0 +1,23 @@
+' Docklight Scripting - Example Script
+' Converted to standard .txt/.vbs format - Original file name: Filter Function.pts
+' The original .pts file start with 3 extra lines before the VBScript code: DL_SCRIPTVERSION token, version number (1), checksum):
+' DL_SCRIPTVERSION
+' 1
+' 2330
+
+'Example Filter Function
+
+
+Dim ResultArray
+Dim NrOfResults
+Dim MyArray (3)
+MyArray(0) = "Sunday"
+MyArray(1) = "Monday"
+MyArray(2) = "Tuesday"
+ResultArray = Filter(MyArray, "Mon") ' MyIndex(0) contains "Monday".
+
+If UBound(ResultArray) = -1 Then
+	DL.AddComment CStr("No match found") 
+Else	
+	DL.AddComment CStr(UBound(ResultArray)+1)+" found" 
+End If

@@ -1,0 +1,108 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM1
+COM5
+115200
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+Report firmware
+56 52 0D 0A
+0
+5
+
+SEND
+1
+Set rating of a light (o,v,c)
+56 4C ?? 2C ?? ## 2C ?? ## ## ## ## ## 0D 0A
+0
+5
+
+SEND
+2
+Set continuous mode (o,s)
+52 53 ?? 2C ?? ## ## 0D 0A
+0
+5
+
+SEND
+3
+Set switched mode (o,s)
+52 57 ?? 2C ?? ## ## 0D 0A
+0
+5
+
+SEND
+4
+Set selected mode (o,b1, b2)
+52 55 ?? 2C ?? ## ## 2C ?? ## ## 0D 0A
+0
+5
+
+SEND
+5
+Set pulse mode (o,p,d,s[,r])
+52 54 ?? 2C ?? ## ## ## ## ## 2C ?? ## ## ## ## ## 2C ?? ## ## ## ## 0D 0A
+0
+5
+
+SEND
+6
+Set trigger input (o,p)
+52 50 ?? 2C ?? ## ## 0D 0A
+0
+5
+
+SEND
+7
+Set internal trigger (f[,p])
+54 54 ?? ## ## ## ## 0D 0A
+0
+5
+
+SEND
+8
+Save settings to memory
+41 57 0D 0A
+0
+5
+
+SEND
+9
+Clear configuration
+43 4C 0D 0A
+0
+5
+
+SEND
+10
+Show configuration
+53 54 0D 0A
+0
+5
+
+SEND
+11
+Clear any errors
+47 52 0D 0A
+0
+5
+

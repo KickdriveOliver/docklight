@@ -1,0 +1,9 @@
+DL_SCRIPTVERSION
+1
+32759
+
+'Example CByte Function
+
+Dim MyDouble, MyByte
+MyDouble = 125.5678        ' MyDouble is a Double.
+MyByte = CByte(MyDouble)   ' MyByte contains 126.

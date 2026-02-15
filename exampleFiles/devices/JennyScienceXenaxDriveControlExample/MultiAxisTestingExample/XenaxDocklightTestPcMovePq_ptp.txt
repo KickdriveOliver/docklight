@@ -1,0 +1,259 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+192.168.2.101:10001
+COM2
+9600
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+Events On EVT1 
+45 56 54 31 0D
+0
+5
+
+SEND
+1
+Events Off EVT0
+45 56 54 30 0D
+0
+5
+
+SEND
+2
+Referencing REF 
+52 45 46 0D
+0
+5
+
+SEND
+3
+Set Speed SP 
+53 50 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+0
+5
+
+SEND
+4
+Set Speed 20000
+53 50 32 30 30 30 30 0D
+0
+5
+
+SEND
+5
+Go Absolute G1000
+47 31 30 30 30 0D
+0
+5
+
+SEND
+6
+Go Absolute G41000
+47 34 31 30 30 30 0D
+0
+5
+
+SEND
+7
+Set Acceleration AC 
+41 43 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+0
+5
+
+SEND
+8
+Go Position G 
+47 ## ## ## ## ## ## ## ## ## ## ## ## 0D
+0
+5
+
+SEND
+9
+Jog Positive JP
+4A 50 0D
+0
+5
+
+SEND
+10
+Jog Negative JN
+4A 4E 0D
+0
+5
+
+SEND
+11
+Tell Status TS 
+54 53 0D
+0
+5
+
+SEND
+12
+Tell Process Status Register TPSR 
+54 50 53 52 0D
+0
+5
+
+SEND
+13
+Tell Position TP 
+54 50 0D
+0
+5
+
+SEND
+14
+Power Quit PQ 
+50 51 0D
+0
+5
+
+SEND
+15
+Power Continue PWC
+50 57 43 0D
+0
+5
+
+SEND
+16
+Tell Error TE 
+54 45 0D
+0
+5
+
+SEND
+17
+Tell Error String TES 
+54 45 53 0D
+0
+5
+
+SEND
+18
+Tell Error History TEB 
+54 45 42 0D
+0
+5
+
+SEND
+19
+Tell Temperature TT 
+54 54 0D
+0
+5
+
+SEND
+20
+Tell Motion Time TMT 
+54 4D 54 0D
+0
+5
+
+SEND
+21
+Version VER 
+56 45 52 0D
+0
+5
+
+SEND
+22
+Version SMU VERS
+56 45 52 53 0D
+0
+5
+
+SEND
+23
+Version Bus Module VERB 
+56 45 52 42 0D
+0
+5
+
+SEND
+24
+Reset to Factory Defaults RES
+52 45 53 0D
+0
+5
+
+RECEIVE
+0
+Event: Referencing Complete
+40 48 0D 0A
+-1
+1
+COMMENT [Referencing Complete]
+1
+1
+0
+1
+
+RECEIVE
+1
+Event: Moving
+40 53 32 0D 0A
+-1
+1
+COMMENT [Moving]
+1
+1
+0
+1
+
+RECEIVE
+2
+Event: Ready
+40 53 31 0D 0A
+-1
+1
+COMMENT [Ready]
+1
+1
+0
+1
+
+RECEIVE
+3
+Prompt >
+3E
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
+RECEIVE
+4
+TPSR Result
+54 50 53 52 0D 0A ?? ?? ?? ?? ?? ?? ?? ?? 0D 0A
+-1
+1
+COMMENT 
+0
+1
+0
+0
+
