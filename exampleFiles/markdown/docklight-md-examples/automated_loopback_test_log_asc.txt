@@ -1,0 +1,38 @@
+Docklight Log File (ASCII) - Started 24.02.2026 17:30:54.010 
+ === Automated Loopback Test ===
+ 
+ Log file output path: F:\FuH\dev\Docklight1\Exe\ScriptSamples\markdown\docklight-md-examples\automated_loopback_test_log_asc.txt
+ 
+ Sending test command 1 of 3: PING
+
+24.02.2026 17:30:54.091 [TX] - PING<CR><LF>
+
+24.02.2026 17:30:54.112 [RX] - PING<CR><LF>
+ PASS - device command reaction OK
+ Test 1 result: PASS
+ 
+ Sending test command 2 of 3: STATUS
+
+24.02.2026 17:30:54.091 [TX] - STATUS<CR><LF>
+
+24.02.2026 17:30:54.143 [RX] - STATUS<CR><LF>
+ PASS - device command reaction OK
+ Test 2 result: PASS
+ 
+ Sending test command 3 of 3: VERSION
+
+24.02.2026 17:30:54.091 [TX] - VERSION<CR><LF>
+
+24.02.2026 17:30:54.172 [RX] - VERSION<CR><LF>
+ PASS - device command reaction OK
+ Test 3 result: PASS
+ 
+ === Test Summary ===
+ Total:  3
+ Passed: 3
+ Failed: 0
+ Result: ALL TESTS PASSED
+
+
+Docklight Log File (ASCII) - Stopped 24.02.2026 17:30:54.240 
+
