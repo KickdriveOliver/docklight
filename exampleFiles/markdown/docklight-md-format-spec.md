@@ -401,26 +401,60 @@ format-version: 1
 data: 48 65 6C 6C 6F
 ```
 
-## 16) Requirement Coverage (Phase 1 SPEC-01..SPEC-16)
+### 15.3 Practical ~40-line example
 
-| Requirement | Coverage in this spec |
-|---|---|
-| SPEC-01 | `## DOCKLIGHT:` section marker grammar |
-| SPEC-02 | `# DOCKLIGHT:` required title marker (project name intentionally omitted per locked decision) |
-| SPEC-03 | `format-version: 1` definition |
-| SPEC-04 | Communication Settings section + key mapping |
-| SPEC-05 | Send Sequence List + subsection heading format |
-| SPEC-06 | Receive Sequence List + subsection heading format |
-| SPEC-07 | Send Sequence keys (`data`, repeat, checksum) |
-| SPEC-08 | Receive Sequence keys including comment/reaction/flags/checksum-validation |
-| SPEC-09 | `??`, `##`, `&&` token handling |
-| SPEC-10 | COMMENT format specifier rules |
-| SPEC-11 | Script section with fenced `vbscript` block |
-| SPEC-12 | Program Options key-value section |
-| SPEC-13 | Project Overview prose region |
-| SPEC-14 | Per-sequence prose support |
-| SPEC-15 | Minimal valid file forms |
-| SPEC-16 | Structured keyword+prose hybrid approach |
+With the commonly used features
+1. Communication Settings
+2. Send Sequence, 
+3. Receive Sequence
+and some added prose explanation (German.) 
+
+
+```
+# DOCKLIGHT:
+
+format-version: 1
+
+Ein einfaches Beispielprojekt zum Senden und Empfangen von Daten.
+
+
+## DOCKLIGHT: Communication Settings
+
+communication-mode: 0  # Senden/Empfangen
+communication-filter: 0  # Alles anzeigen
+channel1-setting: COM2:9600,NONE,8,1,OFF,63,0
+channel2-setting: COM3:9600,NONE,8,1,OFF,63,0
+channel1-alias: 
+channel2-alias: 
+
+## DOCKLIGHT: Send Sequence List
+
+### DOCKLIGHT: Send 0: Hello World
+
+data: 48 65 6C 6C 6F 20 57 6F 72 6C 64 21 0D 0A
+repeat-active: false
+repeat-interval: 5
+checksum: 
+
+Diese Sendesequenz enthält den Text "Hello World!", gefolgt von Carriage Return (CR, 0D) und Line Feed (LF, 0A).
+
+## DOCKLIGHT: Receive Sequence List
+
+### DOCKLIGHT: Receive 0: Detect "Goodbye!"
+
+data: 47 6F 6F 64 62 79 65 21 0D
+reaction: -1  # (keine)
+activated: true
+comment: "Goodbye!" empfangen
+linebreak: true
+trigger: true
+stop-comm: false
+timestamp: true
+checksum: 
+checksum-validation: 0  # Auslösen bei Übereinstimmung
+
+Diese Empfangssequenz reagiert, wenn der ASCII-Text "Goodbye!" gefolgt von einem Carriage Return (CR, 0D) empfangen wird.
+```
 
 ---
 
@@ -595,6 +629,6 @@ For serial port parameter details, see https://docklight.de/manual/dl_setchannel
 ## Meta 
 
 **Author:** oliver.heggelbacher@kickdrive.de 
-**Document Version:** 0.3 
+**Document Version:** 0.4 
 **Last Updated:** 
-2026-02-24
+2026-06-02
